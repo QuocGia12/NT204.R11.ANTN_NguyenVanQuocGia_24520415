@@ -2,7 +2,7 @@ import json
 from typing import TextIO 
 # TextIO: object used for reading or writing text
 
-from scapy.all import PcapReader 
+from scapy.all import PcapReader, sniff
 from scapy.packet import Packet 
 from pathlib import Path
 # PcapReader: read pcapfile and return list Packet 
@@ -26,5 +26,8 @@ def process_pcap(pcap_file: Path, output: TextIO):
 
 
 # mode live capturing 
-def process_interface(interface: str, output: Path): 
-    print("chua implemnet")
+def process_interface(interface: str, output: TextIO): 
+    def process_packet(packet: Packet): 
+        parsed_packet = parser.parse(packet)
+        write_event(output, parsed_packet)
+    sniff(iface=interface, prn=process_packet)

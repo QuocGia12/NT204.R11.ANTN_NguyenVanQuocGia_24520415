@@ -7,7 +7,7 @@ from Capturer_and_Parser.capture import process_pcap, process_interface
 Các options cho CLI là: 
 - --interface  
 - --pcap 
-- --output, default is result.json
+- --output, default is ./result.json
 Chỉ được sử dụng chính xác một trong 2 options đó 
 '''
 def build_CLI() -> argparse.ArgumentParser: 
