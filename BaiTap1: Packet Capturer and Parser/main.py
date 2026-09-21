@@ -31,6 +31,10 @@ def main():
     args = CLI.parse_args()
     print(args.interface, args.pcap, args.output)
 
+'''
+Note: 
++ change type of pcap file and output from string to Path 
+'''
 
 if __name__ == "__main__": 
     main()
