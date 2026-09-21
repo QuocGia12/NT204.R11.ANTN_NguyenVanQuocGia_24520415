@@ -1,4 +1,6 @@
 import argparse 
+from pathlib import Path 
+from Capturer_and_Parser.capture import process_pcap, process_interface
 
 
 '''
@@ -17,11 +19,14 @@ def build_CLI() -> argparse.ArgumentParser:
         "--interface", help="Identify network interface for live capturing"
     )
     source.add_argument(
-        "--pcap", help="Identify pcap file"
+        "--pcap",
+        type=Path, 
+        help="Identify pcap file"
     )
     parser.add_argument(
-        "--output", 
-        default="result.json",
+        "--output",
+        type=Path,
+        default=Path("./result.json"),
         help="Identify output file, the default is result.json"
     )
     return parser 
@@ -29,12 +34,20 @@ def build_CLI() -> argparse.ArgumentParser:
 def main(): 
     CLI = build_CLI()
     args = CLI.parse_args()
-    print(args.interface, args.pcap, args.output)
+    with open(str(args.output), "w") as output_file: 
+        if (args.interface): 
+            process_interface(
+                interface=args.interface, 
+                output=output_file
+            )
+        else:
+            process_pcap(
+                pcap_file=args.pcap, 
+                output=output_file
+            )
 
-'''
-Note: 
-+ change type of pcap file and output from string to Path 
-'''
+
+
 
 if __name__ == "__main__": 
     main()

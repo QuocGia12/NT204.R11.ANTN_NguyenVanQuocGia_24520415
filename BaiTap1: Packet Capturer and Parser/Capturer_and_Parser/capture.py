@@ -2,9 +2,10 @@ import json
 from typing import TextIO 
 # TextIO: object used for reading or writing text
 
-from scapy.all import Pcapreader 
+from scapy.all import PcapReader 
 from scapy.packet import Packet 
-# Pcapreader: read pcapfile and return list Packet 
+from pathlib import Path
+# PcapReader: read pcapfile and return list Packet 
 # Packet: Packet object 
 
 from .parser import PacketParser 
@@ -17,14 +18,13 @@ def write_event(output: TextIO, parsed_packet: dict):
 parser = PacketParser()
 
 # mode importing pcap file 
-def process_pcap(pcap_file: Path, output: Path): 
-    with open(str(output), "w") as file: 
-        with Pcapreader(str(pcap_file)) as list_packets: 
-            for packet in list_packets: 
-                parsed_packet = parser.parse(packet)
-            write_event(file, parsed_packet)               
+def process_pcap(pcap_file: Path, output: TextIO): 
+    with PcapReader(str(pcap_file)) as list_packets: 
+        for packet in list_packets: 
+            parsed_packet = parser.parse(packet)
+            write_event(output, parsed_packet)               
 
 
 # mode live capturing 
-def process_interface(interface: string, output: Path): 
-    # with open 
+def process_interface(interface: str, output: Path): 
+    print("chua implemnet")

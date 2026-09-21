@@ -1,5 +1,8 @@
 from scapy.packet import Packet
 
 class PacketParser: 
-    def parse(packet: Packet): 
-        print(packet)
+    def parse(self, packet: Packet): 
+        res = {
+            "packet": str(packet)
+        }
+        return res 
