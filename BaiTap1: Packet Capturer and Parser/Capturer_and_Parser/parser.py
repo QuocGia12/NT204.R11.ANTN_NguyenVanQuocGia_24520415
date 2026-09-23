@@ -34,7 +34,7 @@ def parse_network(packet: Packet) -> dict[str, Any]:
             "source_IP": packet[IP].src, 
             "dest_IP":  packet[IP].dst, 
             "ttl":  packet[IP].ttl, 
-            "protocol":  packet[IP].proto, 
+            "layer3_protocol":  packet[IP].proto, # protocol of L3 layer, not network layer (1: ICMP, 6: TCP, 17: UDP)
             "len":  packet[IP].len, 
             "id":  packet[IP].id, 
             "flags":  str(packet[IP].flags), 
