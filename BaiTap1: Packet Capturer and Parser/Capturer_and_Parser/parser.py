@@ -1,6 +1,6 @@
 from scapy.packet import Packet, Raw
 from typing import Any 
-from scapy.layers.inet import IP, TCP, UDP
+from scapy.layers.inet import IP, TCP, UDP, ICMP 
 
 class PacketParser: 
     def parse(self, packet: Packet): 
