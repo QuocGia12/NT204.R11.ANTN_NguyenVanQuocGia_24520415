@@ -75,6 +75,13 @@ def parse_transport(packet: Packet) -> dict[str, Any]:
             "len": packet[UDP].len,
             "check_sum": packet[UDP].chksum,
         }
+    elif ICMP in packet: # only parse some valuable fields of ICMP 
+        return {
+            "protocol": "ICMP", 
+            "type": packet[ICMP].type,
+            "code": packet[ICMP].code,
+            "check_sum": packet[ICMP].chksum,
+        }
     else: 
         return {
             "protocol": "UNKNOWN"
