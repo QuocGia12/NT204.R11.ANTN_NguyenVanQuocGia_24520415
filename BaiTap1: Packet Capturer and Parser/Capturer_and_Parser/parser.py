@@ -1,16 +1,13 @@
 from scapy.packet import Packet, Raw
 from typing import Any 
-from scapy.layers.inet import IP, TCP, UDP, ICMP 
+from scapy.layers.inet import IP, TCP, UDP, ICMP
+from scapy.layers.dns import DNS 
+from scapy.layers.http import HTTPRequest, HTTPResponse 
 
 class PacketParser: 
     def parse(self, packet: Packet): 
         parsed_packet = self.base_parsed_packet(packet)
 
-        # SOLVE UNKNOWN OR MALFORM PACKET 
-        # if IP not in packet: 
-        #     parsed_packet["network"]["protocol"] = "UNKNOWN"
-        #     if TCP in packet: 
-        #         parsed_packet["transport"]["protocol"] = "UNKNOWN"
 
         parsed_packet["network"] = parse_network(packet)
         parsed_packet["transport"] = parse_transport(packet)
@@ -88,11 +85,80 @@ def parse_transport(packet: Packet) -> dict[str, Any]:
         }
 
 def parse_application(packet: Packet) -> dict[str, Any]:  
-    if Raw in packet: 
+    if HTTPRequest in packet: 
+        req = packet[HTTPRequest]
+
         return {
-            "raw_data": packet[Raw].load.decode("utf-8", errors="replace")
+            "method": convert_bytes_to_string(req.Method),
+            "path": convert_bytes_to_string(req.Path),
+            "http_version": convert_bytes_to_string(req.Http_Version),
+            "accept": convert_bytes_to_string(req.Accept),
+            "accept_encoding": convert_bytes_to_string(req.Accept_Encoding),
+            "accept_language": convert_bytes_to_string(req.Accept_Language),
+            "authorization": convert_bytes_to_string(req.Authorization),
+            "cache_control": convert_bytes_to_string(req.Cache_Control),
+            "connection": convert_bytes_to_string(req.Connection),
+            "content_length": convert_bytes_to_string(req.Content_Length),
+            "content_type": convert_bytes_to_string(req.Content_Type),
+            "cookie": convert_bytes_to_string(req.Cookie),
+            "host": convert_bytes_to_string(req.Host),
+            "if_modified_since": convert_bytes_to_string(req.If_Modified_Since),
+            "if_none_match": convert_bytes_to_string(req.If_None_Match),
+            "origin": convert_bytes_to_string(req.Origin),
+            "referer": convert_bytes_to_string(req.Referer),
+            "user_agent": convert_bytes_to_string(req.User_Agent),
+            "unknown_headers": req.Unknown_Headers,
+        }
+    elif HTTPResponse in packet: 
+        res = packet[HTTPResponse]
+
+        return {
+            "http_version": convert_bytes_to_string(res.Http_Version),
+            "status_code": convert_bytes_to_string(res.Status_Code),
+            "reason_phrase": convert_bytes_to_string(res.Reason_Phrase),
+
+            "accept_ranges": convert_bytes_to_string(res.Accept_Ranges),
+            "age": convert_bytes_to_string(res.Age),
+            "allow": convert_bytes_to_string(res.Allow),
+            "cache_control": convert_bytes_to_string(res.Cache_Control),
+            "connection": convert_bytes_to_string(res.Connection),
+            "content_encoding": convert_bytes_to_string(res.Content_Encoding),
+            "content_language": convert_bytes_to_string(res.Content_Language),
+            "content_length": convert_bytes_to_string(res.Content_Length),
+            "content_location": convert_bytes_to_string(res.Content_Location),
+            "content_md5": convert_bytes_to_string(res.Content_MD5),
+            "content_range": convert_bytes_to_string(res.Content_Range),
+            "content_type": convert_bytes_to_string(res.Content_Type),
+            "date": convert_bytes_to_string(res.Date),
+            "etag": convert_bytes_to_string(res.ETag),
+            "expires": convert_bytes_to_string(res.Expires),
+            "last_modified": convert_bytes_to_string(res.Last_Modified),
+            "location": convert_bytes_to_string(res.Location),
+            "pragma": convert_bytes_to_string(res.Pragma),
+            "retry_after": convert_bytes_to_string(res.Retry_After),
+            "server": convert_bytes_to_string(res.Server),
+            "set_cookie": convert_bytes_to_string(res.Set_Cookie),
+            "vary": convert_bytes_to_string(res.Vary),
+            "www_authenticate": convert_bytes_to_string(res.WWW_Authenticate),
+
+            "unknown_headers": res.Unknown_Headers,
+        }
+    elif DNS in packet: 
+        return {
+
+        }
+    elif Raw in packet: 
+        # process 
+        return {
+            "Raw": convert_bytes_to_string(packet[Raw].load)
         }
     else: 
         return {
-            "protocol": "UNKNOWN"
+            "protocol": "Unknown"
         }
+    
+
+def convert_bytes_to_string(value):
+    if isinstance(value, bytes):
+        return value.decode("utf-8", errors="replace")
+    return value
