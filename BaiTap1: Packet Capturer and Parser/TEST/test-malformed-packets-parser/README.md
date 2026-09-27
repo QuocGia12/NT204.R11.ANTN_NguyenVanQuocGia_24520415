@@ -1,0 +1,1 @@
+File `malformed.pcap` được tạo manually với lệnh sau: `editcap -E 0.99 TEST/test-http-post/test-http-post.pcap malformed.pcap`
