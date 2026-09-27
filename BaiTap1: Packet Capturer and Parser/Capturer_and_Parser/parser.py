@@ -191,11 +191,52 @@ def parse_application(packet):
         return result
 
     def parse_dns(dns_layer):
-        # not yet implement
+        def get_field(name):
+            return getattr(dns_layer, name, None)
+
+        # Common DNS fields
         result = {
-            "protocol": "DNS"
+            "protocol": "DNS",
+            "transaction_id": get_field("id"),
+            "flags": get_field("flags"),
+            "opcode": get_field("flags_opcode"),
+            "response_code": get_field("flags_rcode"),
+            "question_count": get_field("count_queries"),
+            "answer_count": get_field("count_answers"),
+            "authority_count": get_field("count_auth_rr"),
+            "additional_count": get_field("count_add_rr"),
         }
-        return result 
+
+        # DNS query or response
+        is_response = get_field("flags_response")
+
+        if is_response == "0":
+            result["type"] = "query"
+        elif is_response == "1":
+            result["type"] = "response"
+        else:
+            result["type"] = "unknown"
+
+        # DNS question
+        result["query"] = {
+            "name": get_field("qry_name"),
+            "type": get_field("qry_type"),
+            "class": get_field("qry_class"),
+        }
+
+        # DNS response records
+        result["answers"] = {
+            "a": get_field("a"),
+            "aaaa": get_field("aaaa"),
+            "cname": get_field("cname"),
+            "ns": get_field("ns"),
+            "ptr": get_field("ptr_domain_name"),
+            "mx": get_field("mx_mail_exchange"),
+            "txt": get_field("txt"),
+            "ttl": get_field("resp_ttl"),
+        }
+
+        return result
 
     def parse_smtp(smtp_layer):
         # not yet implement 
