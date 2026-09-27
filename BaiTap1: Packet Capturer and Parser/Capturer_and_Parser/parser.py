@@ -13,19 +13,6 @@ class PacketParser:
         parsed_packet = self.base_parsed_packet(packet)
 
         # process packet 
-        # parsed_packet["packet"]["number"] = to_json_safe(packet.number)
-        # parsed_packet["packet"]["sniff_time"] = to_json_safe(packet.sniff_time)
-        # if "IP" in packet or "IPV6" in packet: 
-        #     parsed_packet["packet"]["network"] = parse_network(packet)
-        # else: 
-        #     parsed_packet["packet"]["network"]["protocol"] = "UNKNOWN"
-
-        # if "TCP" in packet or "UDP" in packet: 
-        #     parsed_packet["packet"]["transport"] = parse_transport(packet)
-        #     parsed_packet["packet"]["payload"] = parse_transport_payload(packet).decode("utf-8", errors="replace")
-        # else: 
-        #     parsed_packet["packet"]["transport"]["protocol"] = "UNKNOWN"
-        #     parsed_packet["packet"]["payload"] = "UNKNOWN"
         parsed_packet["packet"] = parse_packet(packet)
 
         # process application if applicable
@@ -79,6 +66,22 @@ def parse_packet(packet):
         if "TCP" in packet:
             tcp = packet.tcp
 
+            flags = {
+                "F": packet.tcp.flags_fin,
+                "S": packet.tcp.flags_syn,
+                "R": packet.tcp.flags_reset,
+                "P": packet.tcp.flags_push,
+                "A": packet.tcp.flags_ack,
+                "U": packet.tcp.flags_urg,
+                "E": packet.tcp.flags_ecn,
+                "C": packet.tcp.flags_cwr,
+            }
+
+            flag_string = "".join(
+                name for name, value in flags.items()
+                if str(value) == "1"
+            )
+
             return {
                 "protocol": "TCP",
                 "src_port": int(tcp.srcport),
@@ -86,6 +89,7 @@ def parse_packet(packet):
                 "seq": int(tcp.seq),
                 "ack": int(tcp.ack),
                 "flags": tcp.flags,
+                "flag_string": flag_string,
                 "window_size": int(tcp.window_size_value),
                 "payload_len": int(tcp.len),
             }
