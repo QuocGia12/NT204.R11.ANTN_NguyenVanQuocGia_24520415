@@ -7,8 +7,10 @@ from Capturer_and_Parser.capture import process_pcap, process_interface
 Các options cho CLI là: 
 - --interface  
 - --pcap 
-- --output, default is ./result.json
-Chỉ được sử dụng chính xác một trong 2 options đó 
+- --output_packet, default is ./packet_result.json
+- --output_application, default is ./application_result.json
+
+Chỉ được sử dụng chính xác một trong 2 options interface và pcap 
 '''
 def build_CLI() -> argparse.ArgumentParser: 
     parser = argparse.ArgumentParser(
@@ -24,26 +26,34 @@ def build_CLI() -> argparse.ArgumentParser:
         help="Identify pcap file"
     )
     parser.add_argument(
-        "--output",
+        "--output_packet",
         type=Path,
-        default=Path("./result.json"),
-        help="Identify output file, the default is result.json"
+        default=Path("./packet_result.json"),
+        help="Identify output file for packet result, the default is packet_result.json"
+    )
+    parser.add_argument(
+        "--output_application",
+        type=Path,
+        default=Path("./application_result.json"),
+        help="Identify output file for application result, the default is application_result.json"
     )
     return parser 
 
 def main(): 
     CLI = build_CLI()
     args = CLI.parse_args()
-    with open(str(args.output), "w") as output_file: 
+    with open(str(args.output_packet), "w") as output_packet, open(str(args.output_application), "w") as output_application: 
         if (args.interface): 
             process_interface(
                 interface=args.interface, 
-                output=output_file
+                output_packet=output_packet,
+                output_appication=output_application
             )
         else:
             process_pcap(
                 pcap_file=args.pcap, 
-                output=output_file
+                output_packet=output_packet,
+                output_application=output_application
             )
 
 
