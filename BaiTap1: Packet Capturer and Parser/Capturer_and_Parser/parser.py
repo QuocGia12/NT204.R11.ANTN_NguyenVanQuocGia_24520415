@@ -318,13 +318,33 @@ def parse_application(packet):
         return result 
 
     def parse_dont_implement_protocol(app_layer): # protocol that pyshark can detect but not http, dns, smtp
-        def get_field(name): 
-            return getattr(app_layer, name, None) 
-
         result = {
-            "protocol": get_field(layer_name)
+            "protocol": app_layer.layer_name.upper(),
+            "fields": {}
         }
-        return result 
+
+        for name in app_layer.field_names:
+            field = app_layer.get_field(name)
+
+            if field is None:
+                continue
+
+            values = [
+                item.show
+                for item in field.all_fields
+            ]
+
+            if not values:
+                continue
+
+            # Handle unnamed fields
+            field_name = name if name else "data"
+
+            result["fields"][field_name] = (
+                values[0] if len(values) == 1 else values
+            )
+
+        return result
 
 
     layers = packet.layers
