@@ -38,7 +38,7 @@ def process_pcap(pcap_file: Path, output_packet: TextIO, output_application: Tex
 def process_interface(interface: str, output_packet: TextIO, output_application: TextIO): 
     capture = pyshark.LiveCapture(
         interface=interface, 
-        keep_packets=False, 
+        # keep_packets=False, 
         override_prefs={
             "ip.defragment": "TRUE", 
             "ipv6.defragment": "TRUE",

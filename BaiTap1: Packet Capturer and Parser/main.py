@@ -47,7 +47,7 @@ def main():
             process_interface(
                 interface=args.interface, 
                 output_packet=output_packet,
-                output_appication=output_application
+                output_application=output_application
             )
         else:
             process_pcap(
