@@ -305,8 +305,6 @@ def parse_application(packet):
         return result
 
     def parse_data(data_layer):
-        # not yet implement 
-        # maybe need to implement custom parse http, dns, smtp để tránh những trường hợp pyshark không detect được 
         def get_field(name): 
             return getattr(data_layer, name, None)
 
@@ -319,10 +317,12 @@ def parse_application(packet):
         }
         return result 
 
-    def parse_dont_implement_protocol(app_layer):
-        # not yet implement 
+    def parse_dont_implement_protocol(app_layer): # protocol that pyshark can detect but not http, dns, smtp
+        def get_field(name): 
+            return getattr(app_layer, name, None) 
+
         result = {
-            "protocol": "UNKNOWN(but PyShark can detect)"
+            "protocol": get_field(layer_name)
         }
         return result 
 
@@ -350,7 +350,7 @@ def parse_application(packet):
     - nếu là data → kiểm tra trên tầng này còn layer gì không:
         - nếu có → lấy layer trên
         - nếu không → lấy layer data
-'''
+    '''
 
     for i, layer in enumerate(layers):
         if layer.layer_name.lower() in {"tcp", "udp"}:
