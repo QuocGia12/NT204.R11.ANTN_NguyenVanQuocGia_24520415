@@ -239,11 +239,70 @@ def parse_application(packet):
         return result
 
     def parse_smtp(smtp_layer):
-        # not yet implement 
+        def get_field(name):
+            return smtp_layer.get_field_value(name)
+
+        def get_all_fields(name):
+            field = smtp_layer.get_field(name)
+
+            if field is None:
+                return []
+
+            return [
+                item.show
+                for item in field.all_fields
+            ]
+
         result = {
-            "protocol": "DNS"
+            "protocol": "SMTP",
+            "type": "unknown",
+
+            "command": get_field("req_command"),
+            "command_parameter": get_field("req_parameter"),
+
+            "response_code": get_field("response_code"),
+            "response_parameter": get_field("rsp_parameter"),
+
+            "message": get_field("message"),
+
+            "data_fragment_count": get_field(
+                "data_fragment_count"
+            ),
+
+            "data_reassembled_length": get_field(
+                "data_reassembled_length"
+            ),
+
+            "data_fragments": get_all_fields(
+                "data_fragment"
+            ),
         }
-        return result 
+
+        if "eom" in smtp_layer.field_names:
+            result["type"] = "end_of_message"
+
+        elif result["command"] is not None:
+            result["type"] = "request"
+
+        elif result["response_code"] is not None:
+            result["type"] = "response"
+
+        elif get_field("auth_password") is not None:
+            result["type"] = "auth"
+            result["auth_password_present"] = True
+
+        else:
+            field = smtp_layer.get_field("")
+
+            if field is not None:
+                result["type"] = "data"
+
+                result["message"] = "".join(
+                    item.show
+                    for item in field.all_fields
+                )
+
+        return result
 
     def parse_data(data_layer):
         # not yet implement 
