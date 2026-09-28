@@ -264,6 +264,8 @@ def parse_application(packet):
 
         return result
 
+
+
     def parse_smtp(smtp_layer):
         def get_field(name):
             return smtp_layer.get_field_value(name)
@@ -277,56 +279,122 @@ def parse_application(packet):
             return [
                 item.show
                 for item in field.all_fields
+                if item.show is not None
             ]
+
+        def merge_fields(name, separator=" "):
+            values = get_all_fields(name)
+
+            if not values:
+                return None
+
+            return separator.join(values)
 
         result = {
             "protocol": "SMTP",
             "type": "unknown",
-
-            "command": get_field("req_command"),
-            "command_parameter": get_field("req_parameter"),
-
-            "response_code": get_field("response_code"),
-            "response_parameter": get_field("rsp_parameter"),
-
-            "message": get_field("message"),
-
-            "data_fragment_count": get_field(
-                "data_fragment_count"
-            ),
-
-            "data_reassembled_length": get_field(
-                "data_reassembled_length"
-            ),
-
-            "data_fragments": get_all_fields(
-                "data_fragment"
-            ),
         }
 
+
+        # End of message
         if "eom" in smtp_layer.field_names:
             result["type"] = "end_of_message"
+            return result
 
-        elif result["command"] is not None:
+        # AUTH
+        auth_username = get_field("auth_username")
+        auth_password = get_field("auth_password")
+
+        if auth_username is not None:
+            result["type"] = "auth"
+            result["auth_type"] = "username"
+            result["username"] = auth_username
+            return result
+
+        if auth_password is not None:
+            result["type"] = "auth"
+            result["auth_type"] = "password"
+            result["auth_password_present"] = True
+            return result
+
+        # SMTP request
+        command = merge_fields("req_command")
+        arg = merge_fields("req_parameter")
+
+        if command is not None:
             result["type"] = "request"
 
-        elif result["response_code"] is not None:
+            command = command.strip()
+
+
+            if command.upper() == "MAIL" and arg:
+                stripped_arg = arg.strip()
+
+                if stripped_arg.upper().startswith("FROM:"):
+                    command = "MAIL FROM"
+                    arg = stripped_arg[5:].strip()
+
+                elif stripped_arg.upper().startswith("FROM "):
+                    command = "MAIL FROM"
+                    arg = stripped_arg[5:].strip()
+
+
+            elif command.upper() == "RCPT" and arg:
+                stripped_arg = arg.strip()
+
+                if stripped_arg.upper().startswith("TO:"):
+                    command = "RCPT TO"
+                    arg = stripped_arg[3:].strip()
+
+                elif stripped_arg.upper().startswith("TO "):
+                    command = "RCPT TO"
+                    arg = stripped_arg[3:].strip()
+
+            result["command"] = command
+
+            if arg:
+                result["arg"] = arg
+
+            return result
+
+        # SMTP response
+        response_code = merge_fields("response_code")
+        response_message = merge_fields("rsp_parameter")
+
+        if response_code is not None:
             result["type"] = "response"
+            result["response_code"] = response_code
 
-        elif get_field("auth_password") is not None:
-            result["type"] = "auth"
-            result["auth_password_present"] = True
+            if response_message:
+                result["message"] = response_message
 
-        else:
-            field = smtp_layer.get_field("")
+            return result
 
-            if field is not None:
-                result["type"] = "data"
+        # SMTP DATA
+        field = smtp_layer.get_field("")
 
-                result["message"] = "".join(
-                    item.show
-                    for item in field.all_fields
-                )
+        if field is not None:
+            result["type"] = "data"
+
+            result["message"] = "".join(
+                item.show
+                for item in field.all_fields
+                if item.show is not None
+            )
+
+        # Reassembly information
+        data_fragment_count = get_field("data_fragment_count")
+        data_reassembled_length = get_field("data_reassembled_length")
+        data_fragments = get_all_fields("data_fragment")
+
+        if data_fragment_count is not None:
+            result["data_fragment_count"] = data_fragment_count
+
+        if data_reassembled_length is not None:
+            result["data_reassembled_length"] = data_reassembled_length
+
+        if data_fragments:
+            result["data_fragments"] = data_fragments
 
         return result
 
