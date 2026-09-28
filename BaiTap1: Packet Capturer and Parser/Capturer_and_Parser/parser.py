@@ -171,14 +171,51 @@ def parse_application(packet):
         def get_field(name):
             return getattr(http_layer, name, None)
 
-        # Common HTTP fields
+        def get_headers():
+            headers = {}
+
+            # Request -> request_line
+            # Response -> response_line
+            if get_field("request_method") is not None:
+                field = http_layer.get_field("request_line")
+
+            elif get_field("response_code") is not None:
+                field = http_layer.get_field("response_line")
+
+            else:
+                return headers
+
+            if field is None:
+                return headers
+
+            for item in field.all_fields:
+                line = item.show
+
+                if not line or ":" not in line:
+                    continue
+
+                name, value = line.split(":", 1)
+
+                name = name.strip()
+                value = value.strip()
+
+                # Same header can appear multiple times
+                if name in headers:
+                    if isinstance(headers[name], list):
+                        headers[name].append(value)
+                    else:
+                        headers[name] = [
+                            headers[name],
+                            value,
+                        ]
+                else:
+                    headers[name] = value
+
+            return headers
+
         result = {
             "protocol": "HTTP",
-            "content_type": get_field("content_type"),
-            "content_length": get_field("content_length"),
-            "host": get_field("host"),
-            "user_agent": get_field("user_agent"),
-            "connection": get_field("connection"),
+            "headers": get_headers(),
             "body": get_field("file_data"),
         }
 
@@ -199,7 +236,6 @@ def parse_application(packet):
                 "version": get_field("response_version"),
                 "status_code": get_field("response_code"),
                 "reason": get_field("response_phrase"),
-                "server": get_field("server"),
             })
 
         else:
