@@ -7,6 +7,19 @@ NON_APPLICATION_LAYERS = {
     "arp", "vlan", "frame", "data"
 }
 
+DNS_TYPES = {
+    "1": "A",
+    "2": "NS",
+    "5": "CNAME",
+    "6": "SOA",
+    "12": "PTR",
+    "15": "MX",
+    "16": "TXT",
+    "28": "AAAA",
+    "33": "SRV",
+    "255": "ANY",
+}
+
 class PacketParser: 
     def parse(self, packet): 
         # test 
@@ -198,6 +211,14 @@ def parse_application(packet):
         def get_field(name):
             return getattr(dns_layer, name, None)
 
+        def get_all_fields(name):
+            field = dns_layer.get_field(name)
+
+            if field is None:
+                return []
+
+            return [item.show for item in field.all_fields]
+
         # Common DNS fields
         result = {
             "protocol": "DNS",
@@ -225,19 +246,20 @@ def parse_application(packet):
         result["query"] = {
             "name": get_field("qry_name"),
             "type": get_field("qry_type"),
+            "type_string": DNS_TYPES.get(get_field("qry_type"), f"TYPE{get_field('qry_type')}"),
             "class": get_field("qry_class"),
         }
 
         # DNS response records
         result["answers"] = {
-            "a": get_field("a"),
-            "aaaa": get_field("aaaa"),
-            "cname": get_field("cname"),
-            "ns": get_field("ns"),
-            "ptr": get_field("ptr_domain_name"),
-            "mx": get_field("mx_mail_exchange"),
-            "txt": get_field("txt"),
-            "ttl": get_field("resp_ttl"),
+            "a": get_all_fields("a"),
+            "aaaa": get_all_fields("aaaa"),
+            "cname": get_all_fields("cname"),
+            "ns": get_all_fields("ns"),
+            "ptr": get_all_fields("ptr_domain_name"),
+            "mx": get_all_fields("mx_mail_exchange"),
+            "txt": get_all_fields("txt"),
+            "ttl": get_all_fields("resp_ttl"),
         }
 
         return result
