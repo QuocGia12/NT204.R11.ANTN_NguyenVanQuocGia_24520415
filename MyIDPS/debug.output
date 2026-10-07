@@ -1,0 +1,486 @@
+====================================================================================================
+Packet #4
+Type: HTTP Request
+Request: GET /download.html HTTP/1.1
+
+HTTP fields / headers:
+----------------------------------------------------------------------------------------------------
+
+[]
+  show       : GET /download.html HTTP/1.1\r\n
+  raw_value  : 474554202f646f776e6c6f61642e68746d6c20485454502f312e310d0a
+  show       : \r\n
+  raw_value  : 0d0a
+
+[_ws_expert]
+  show       : None
+  raw_value  : None
+
+[chat]
+  show       : 
+  raw_value  : 
+
+[_ws_expert_message]
+  show       : GET /download.html HTTP/1.1\r\n
+  raw_value  : None
+
+[_ws_expert_severity]
+  show       : 2097152
+  raw_value  : None
+
+[_ws_expert_group]
+  show       : 33554432
+  raw_value  : None
+
+[request_method]
+  show       : GET
+  raw_value  : 474554
+
+[request_uri]
+  show       : /download.html
+  raw_value  : 2f646f776e6c6f61642e68746d6c
+
+[request_version]
+  show       : HTTP/1.1
+  raw_value  : 485454502f312e31
+
+[host]
+  show       : www.ethereal.com
+  raw_value  : 486f73743a207777772e657468657265616c2e636f6d0d0a
+
+[request_line]
+  show       : Host: www.ethereal.com 
+  raw_value  : 486f73743a207777772e657468657265616c2e636f6d0d0a
+  show       : User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113 
+  raw_value  : 557365722d4167656e743a204d6f7a696c6c612f352e30202857696e646f77733b20553b2057696e646f7773204e5420352e313b20656e2d55533b2072763a312e3629204765636b6f2f32303034303131330d0a
+  show       : Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1 
+  raw_value  : 4163636570743a20746578742f786d6c2c6170706c69636174696f6e2f786d6c2c6170706c69636174696f6e2f7868746d6c2b786d6c2c746578742f68746d6c3b713d302e392c746578742f706c61696e3b713d302e382c696d6167652f706e672c696d6167652f6a7065672c696d6167652f6769663b713d302e322c2a2f2a3b713d302e310d0a
+  show       : Accept-Language: en-us,en;q=0.5 
+  raw_value  : 4163636570742d4c616e67756167653a20656e2d75732c656e3b713d302e350d0a
+  show       : Accept-Encoding: gzip,deflate 
+  raw_value  : 4163636570742d456e636f64696e673a20677a69702c6465666c6174650d0a
+  show       : Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7 
+  raw_value  : 4163636570742d436861727365743a2049534f2d383835392d312c7574662d383b713d302e372c2a3b713d302e370d0a
+  show       : Keep-Alive: 300 
+  raw_value  : 4b6565702d416c6976653a203330300d0a
+  show       : Connection: keep-alive 
+  raw_value  : 436f6e6e656374696f6e3a206b6565702d616c6976650d0a
+  show       : Referer: http://www.ethereal.com/development.html 
+  raw_value  : 526566657265723a20687474703a2f2f7777772e657468657265616c2e636f6d2f646576656c6f706d656e742e68746d6c0d0a
+
+[user_agent]
+  show       : Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113
+  raw_value  : 557365722d4167656e743a204d6f7a696c6c612f352e30202857696e646f77733b20553b2057696e646f7773204e5420352e313b20656e2d55533b2072763a312e3629204765636b6f2f32303034303131330d0a
+
+[accept]
+  show       : text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1
+  raw_value  : 4163636570743a20746578742f786d6c2c6170706c69636174696f6e2f786d6c2c6170706c69636174696f6e2f7868746d6c2b786d6c2c746578742f68746d6c3b713d302e392c746578742f706c61696e3b713d302e382c696d6167652f706e672c696d6167652f6a7065672c696d6167652f6769663b713d302e322c2a2f2a3b713d302e310d0a
+
+[accept_language]
+  show       : en-us,en;q=0.5
+  raw_value  : 4163636570742d4c616e67756167653a20656e2d75732c656e3b713d302e350d0a
+
+[accept_encoding]
+  show       : gzip,deflate
+  raw_value  : 4163636570742d456e636f64696e673a20677a69702c6465666c6174650d0a
+
+[connection]
+  show       : keep-alive
+  raw_value  : 436f6e6e656374696f6e3a206b6565702d616c6976650d0a
+
+[referer]
+  show       : http://www.ethereal.com/development.html
+  raw_value  : 526566657265723a20687474703a2f2f7777772e657468657265616c2e636f6d2f646576656c6f706d656e742e68746d6c0d0a
+
+[request_full_uri]
+  show       : http://www.ethereal.com/download.html
+  raw_value  : None
+
+[request]
+  show       : 1
+  raw_value  : None
+
+[request_number]
+  show       : 1
+  raw_value  : None
+
+====================================================================================================
+Packet #18
+Type: HTTP Request
+Request: GET /pagead/ads?client=ca-pub-2309191948673629&random=1084443430285&lmt=1082467020&format=468x60_as&output=html&url=http%3A%2F%2Fwww.ethereal.com%2Fdownload.html&color_bg=FFFFFF&color_text=333333&color_link=000000&color_url=666633&color_border=666633 HTTP/1.1
+
+HTTP fields / headers:
+----------------------------------------------------------------------------------------------------
+
+[]
+  show       :  [truncated]GET /pagead/ads?client=ca-pub-2309191948673629&random=1084443430285&lmt=1082467020&format=468x60_as&output=html&url=http%3A%2F%2Fwww.ethereal.com%2Fdownload.html&color_bg=FFFFFF&color_text=333333&color_link=000000&color_url=66
+  raw_value  : 474554202f7061676561642f6164733f636c69656e743d63612d7075622d323330393139313934383637333632392672616e646f6d3d31303834343433343330323835266c6d743d3130383234363730323026666f726d61743d3436387836305f6173266f75747075743d68746d6c2675726c3d687474702533412532462532467777772e657468657265616c2e636f6d253246646f776e6c6f61642e68746d6c26636f6c6f725f62673d46464646464626636f6c6f725f746578743d33333333333326636f6c6f725f6c696e6b3d30303030303026636f6c6f725f75726c3d36363636333326636f6c6f725f626f726465723d36363636333320485454502f312e310d0a
+  show       : \r\n
+  raw_value  : 0d0a
+
+[_ws_expert]
+  show       : None
+  raw_value  : None
+
+[chat]
+  show       : 
+  raw_value  : 
+
+[_ws_expert_message]
+  show       : GET /pagead/ads?client=ca-pub-2309191948673629&random=1084443430285&lmt=1082467020&format=468x60_as&output=html&url=http%3A%2F%2Fwww.ethereal.com%2Fdownload.html&color_bg=FFFFFF&color_text=333333&color_link=000000&color_url=666633&color_bo
+  raw_value  : None
+
+[_ws_expert_severity]
+  show       : 2097152
+  raw_value  : None
+
+[_ws_expert_group]
+  show       : 33554432
+  raw_value  : None
+
+[request_method]
+  show       : GET
+  raw_value  : 474554
+
+[request_uri]
+  show       : /pagead/ads?client=ca-pub-2309191948673629&random=1084443430285&lmt=1082467020&format=468x60_as&output=html&url=http%3A%2F%2Fwww.ethereal.com%2Fdownload.html&color_bg=FFFFFF&color_text=333333&color_link=000000&color_url=666633&color_border=666633
+  raw_value  : 2f7061676561642f6164733f636c69656e743d63612d7075622d323330393139313934383637333632392672616e646f6d3d31303834343433343330323835266c6d743d3130383234363730323026666f726d61743d3436387836305f6173266f75747075743d68746d6c2675726c3d687474702533412532462532467777772e657468657265616c2e636f6d253246646f776e6c6f61642e68746d6c26636f6c6f725f62673d46464646464626636f6c6f725f746578743d33333333333326636f6c6f725f6c696e6b3d30303030303026636f6c6f725f75726c3d36363636333326636f6c6f725f626f726465723d363636363333
+
+[request_uri_path]
+  show       : /pagead/ads
+  raw_value  : 2f7061676561642f616473
+
+[request_uri_query]
+  show       : client=ca-pub-2309191948673629&random=1084443430285&lmt=1082467020&format=468x60_as&output=html&url=http%3A%2F%2Fwww.ethereal.com%2Fdownload.html&color_bg=FFFFFF&color_text=333333&color_link=000000&color_url=666633&color_border=666633
+  raw_value  : 636c69656e743d63612d7075622d323330393139313934383637333632392672616e646f6d3d31303834343433343330323835266c6d743d3130383234363730323026666f726d61743d3436387836305f6173266f75747075743d68746d6c2675726c3d687474702533412532462532467777772e657468657265616c2e636f6d253246646f776e6c6f61642e68746d6c26636f6c6f725f62673d46464646464626636f6c6f725f746578743d33333333333326636f6c6f725f6c696e6b3d30303030303026636f6c6f725f75726c3d36363636333326636f6c6f725f626f726465723d363636363333
+
+[request_uri_query_parameter]
+  show       : client=ca-pub-2309191948673629
+  raw_value  : 636c69656e743d63612d7075622d32333039313931393438363733363239
+  show       : random=1084443430285
+  raw_value  : 72616e646f6d3d31303834343433343330323835
+  show       : lmt=1082467020
+  raw_value  : 6c6d743d31303832343637303230
+  show       : format=468x60_as
+  raw_value  : 666f726d61743d3436387836305f6173
+  show       : output=html
+  raw_value  : 6f75747075743d68746d6c
+  show       : url=http%3A%2F%2Fwww.ethereal.com%2Fdownload.html
+  raw_value  : 75726c3d687474702533412532462532467777772e657468657265616c2e636f6d253246646f776e6c6f61642e68746d6c
+  show       : color_bg=FFFFFF
+  raw_value  : 636f6c6f725f62673d464646464646
+  show       : color_text=333333
+  raw_value  : 636f6c6f725f746578743d333333333333
+  show       : color_link=000000
+  raw_value  : 636f6c6f725f6c696e6b3d303030303030
+  show       : color_url=666633
+  raw_value  : 636f6c6f725f75726c3d363636363333
+  show       : color_border=666633
+  raw_value  : 636f6c6f725f626f726465723d363636363333
+
+[request_version]
+  show       : HTTP/1.1
+  raw_value  : 485454502f312e31
+
+[host]
+  show       : pagead2.googlesyndication.com
+  raw_value  : 486f73743a20706167656164322e676f6f676c6573796e6469636174696f6e2e636f6d0d0a
+
+[request_line]
+  show       : Host: pagead2.googlesyndication.com 
+  raw_value  : 486f73743a20706167656164322e676f6f676c6573796e6469636174696f6e2e636f6d0d0a
+  show       : User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113 
+  raw_value  : 557365722d4167656e743a204d6f7a696c6c612f352e30202857696e646f77733b20553b2057696e646f7773204e5420352e313b20656e2d55533b2072763a312e3629204765636b6f2f32303034303131330d0a
+  show       : Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1 
+  raw_value  : 4163636570743a20746578742f786d6c2c6170706c69636174696f6e2f786d6c2c6170706c69636174696f6e2f7868746d6c2b786d6c2c746578742f68746d6c3b713d302e392c746578742f706c61696e3b713d302e382c696d6167652f706e672c696d6167652f6a7065672c696d6167652f6769663b713d302e322c2a2f2a3b713d302e310d0a
+  show       : Accept-Language: en-us,en;q=0.5 
+  raw_value  : 4163636570742d4c616e67756167653a20656e2d75732c656e3b713d302e350d0a
+  show       : Accept-Encoding: gzip,deflate 
+  raw_value  : 4163636570742d456e636f64696e673a20677a69702c6465666c6174650d0a
+  show       : Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7 
+  raw_value  : 4163636570742d436861727365743a2049534f2d383835392d312c7574662d383b713d302e372c2a3b713d302e370d0a
+  show       : Keep-Alive: 300 
+  raw_value  : 4b6565702d416c6976653a203330300d0a
+  show       : Connection: keep-alive 
+  raw_value  : 436f6e6e656374696f6e3a206b6565702d616c6976650d0a
+  show       : Referer: http://www.ethereal.com/download.html 
+  raw_value  : 526566657265723a20687474703a2f2f7777772e657468657265616c2e636f6d2f646f776e6c6f61642e68746d6c0d0a
+
+[user_agent]
+  show       : Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113
+  raw_value  : 557365722d4167656e743a204d6f7a696c6c612f352e30202857696e646f77733b20553b2057696e646f7773204e5420352e313b20656e2d55533b2072763a312e3629204765636b6f2f32303034303131330d0a
+
+[accept]
+  show       : text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1
+  raw_value  : 4163636570743a20746578742f786d6c2c6170706c69636174696f6e2f786d6c2c6170706c69636174696f6e2f7868746d6c2b786d6c2c746578742f68746d6c3b713d302e392c746578742f706c61696e3b713d302e382c696d6167652f706e672c696d6167652f6a7065672c696d6167652f6769663b713d302e322c2a2f2a3b713d302e310d0a
+
+[accept_language]
+  show       : en-us,en;q=0.5
+  raw_value  : 4163636570742d4c616e67756167653a20656e2d75732c656e3b713d302e350d0a
+
+[accept_encoding]
+  show       : gzip,deflate
+  raw_value  : 4163636570742d456e636f64696e673a20677a69702c6465666c6174650d0a
+
+[connection]
+  show       : keep-alive
+  raw_value  : 436f6e6e656374696f6e3a206b6565702d616c6976650d0a
+
+[referer]
+  show       : http://www.ethereal.com/download.html
+  raw_value  : 526566657265723a20687474703a2f2f7777772e657468657265616c2e636f6d2f646f776e6c6f61642e68746d6c0d0a
+
+[request_full_uri]
+  show       : http://pagead2.googlesyndication.com/pagead/ads?client=ca-pub-2309191948673629&random=1084443430285&lmt=1082467020&format=468x60_as&output=html&url=http%3A%2F%2Fwww.ethereal.com%2Fdownload.html&color_bg=FFFFFF&color_text=333333&color_link=000000&color_url=666633&color_border=666633
+  raw_value  : None
+
+[request]
+  show       : 1
+  raw_value  : None
+
+[request_number]
+  show       : 1
+  raw_value  : None
+
+====================================================================================================
+Packet #27
+Type: HTTP Response
+Response: HTTP/1.1 200 OK
+
+HTTP fields / headers:
+----------------------------------------------------------------------------------------------------
+
+[]
+  show       : HTTP/1.1 200 OK\r\n
+  raw_value  : 485454502f312e3120323030204f4b0d0a
+  show       : \r\n
+  raw_value  : 0d0a
+  show       : Content-encoded entity body (gzip): 1272 bytes -> 3608 bytes
+  raw_value  : 1f8b08000000000002ffcd57eb73da3810ff7e7f85ce6d4998061b037982b93179d0b44d7aeda537bd4f37b225dbba08cb9564084df3bfdfca1870206492decdcd9961f4d8a776f7b7b27b891ef17e2fa198f47b4a4f39edf77e6e347eb2c3e436cca512f228132cd55476cb65825372876d4c8e384bafd12d0a05876df4a2593c68461b33c534259bc8891853b9898843cdc6f441aaa25886c9aae5a8782af475eb6b2cab1eac31ac79b1e4c05a4b16e49a8974b32b55a6c7fca9f26d76aacab5d133841ca7d1e8f79c32912a942cd3b38446791a1a69a4d4f66487913aba9db0948889ad34d6b9421e9a7425d5b94c919639edde2d2442b55dbfcfec6d6d55e9781bd76f911699cd4588cd9e9d481a794484f988a6da8ea93ee5d44c07d37302dc05bda222c6db6287824f2c42db1bc4808a3d613362ab3c50108e34de76ebdd0c3cb7acae9c0d310cd4d658826cd7288b414cc3660c82dda898645882ca4b4168c11101875112198ea498ac702475a33d31f4bb3b44b982e027852125c3d2c34277b2ae7ba1592f541882f63c8cbe7f4759394a18ebd5f03f3b9a7777f3e497597766a00e0499a2203e36b5e25965ad5888d3485f409858ea594dcb24afb21a15d309233aa9ac13cae2449b8d7e4fe38053547274f60e2c34a7ee017f483957190e21459ee5ced61926a458033d109250399bc661e9d91e3cedb6d12de14fd66cec2d6dec1eacd868aed87037d8284f3fb76110043ae0d02d6b6e686965fd989d0af171075a550716e610239ea5f1c47073ac946785c9c270ab75b854df811360ce6270cd64ca42e3720589b29048cfa018401cc0bc150bc81e9a4c009c548e2321436a8762e46ced6c81a5adba61bf10b9a21fc6c69da7892c647270c63400a3e598b3f0dab300ac3a616a878ea104eb70ba48a41a153dc7b3ccbca1d8377ae4bad94d1715eb088f189f1e817d8253bc8325c37c47e15435c03e8bbaa003cf2382895584a988d20cc89ef56771ec02069693e1182adbc12434fefca2b0c76b9879fe5b721d7d554de19f85d730c4fe5bdafa383c38f9f8aeb13f38d81f75befde1fbed8e1e74aefce1557438f0fde6f0c347fff8d4dffde40389b449fe7948c4efa3909f0d83fca215e8817fd98a4f68cbfff625b97c035cb5341f796e0d935c722fd13a3b729cf548be6a9f81b354be6a9fc442c49cba35f016e2e585b891e541a3d56e1ebaf0eb1cecedb7f74ceaff4952cbcef1a3b9852ed1ff0db8cf0c77cf09a07960f89bdc01496ecc70f3c9192eefaa17ede2b1fa279430686e70271abb542ad4402ff7779d9140353ccaba28cf907b35405f2086e02f9fa2972ebc02cc7d728afeb00494fbef03ea3d4bf31bfbfc4a0bc1037163625884d07d04518fcafc1f20e53e13521fdefd1a3c04a9ddaff9f4ec621c8fda7348fd751f52e7cf8654eb3ea478114aa62ba1746229f24c95838d5506281b03c23e9d9ebcf1af1aef7f04624f4ff31ac69e996d03b24f50f06fb046274c811f0aeef6ff046dd08b283a6d8c30e3688095415d9e65426ab4ee101a9af0de479a63ee2fa7b80cab3be5ad968a89c4d91c75eeab25e85cf7c10b7e8edefb8287872b922540a5d97950cfb2c0976fc7ab250d299011a524c050d72b2d9bea844a8a79515cf0769b7281896dbe886a09f7680a15f9d95befa4b07de52dda65c1f44029145c10ded710ded7cbf0d68848a957c561c0717abd19f24fcfbad5f78942c1140d8b1b679141fc7816173be64dd1bc369a2fc2bf017bdc0339180e0000
+
+[_ws_expert]
+  show       : None
+  raw_value  : None
+
+[chat]
+  show       : 
+  raw_value  : 
+
+[_ws_expert_message]
+  show       : HTTP/1.1 200 OK\r\n
+  raw_value  : None
+
+[_ws_expert_severity]
+  show       : 2097152
+  raw_value  : None
+
+[_ws_expert_group]
+  show       : 33554432
+  raw_value  : None
+
+[response_version]
+  show       : HTTP/1.1
+  raw_value  : 485454502f312e31
+
+[response_code]
+  show       : 200
+  raw_value  : 323030
+
+[response_code_desc]
+  show       : OK
+  raw_value  : 323030
+
+[response_phrase]
+  show       : OK
+  raw_value  : 4f4b
+
+[response_line]
+  show       : P3P: policyref="http://www.googleadservices.com/pagead/p3p.xml", CP="NOI DEV PSA PSD IVA PVD OTP OUR OTR IND OTC" 
+  raw_value  : 5033503a20706f6c6963797265663d22687474703a2f2f7777772e676f6f676c65616473657276696365732e636f6d2f7061676561642f7033702e786d6c222c2043503d224e4f492044455620505341205053442049564120505644204f5450204f5552204f545220494e44204f5443220d0a
+  show       : Content-Type: text/html; charset=ISO-8859-1 
+  raw_value  : 436f6e74656e742d547970653a20746578742f68746d6c3b20636861727365743d49534f2d383835392d310d0a
+  show       : Content-Encoding: gzip 
+  raw_value  : 436f6e74656e742d456e636f64696e673a20677a69700d0a
+  show       : Server: CAFE/1.0 
+  raw_value  : 5365727665723a20434146452f312e300d0a
+  show       : Cache-control: private, x-gzip-ok="" 
+  raw_value  : 43616368652d636f6e74726f6c3a20707269766174652c20782d677a69702d6f6b3d22220d0a
+  show       : Content-length: 1272 
+  raw_value  : 436f6e74656e742d6c656e6774683a20313237320d0a
+  show       : Date: Thu, 13 May 2004 10:17:14 GMT 
+  raw_value  : 446174653a205468752c203133204d617920323030342031303a31373a313420474d540d0a
+
+[content_type]
+  show       : text/html; charset=ISO-8859-1
+  raw_value  : 436f6e74656e742d547970653a20746578742f68746d6c3b20636861727365743d49534f2d383835392d310d0a
+
+[content_encoding]
+  show       : gzip
+  raw_value  : 436f6e74656e742d456e636f64696e673a20677a69700d0a
+
+[server]
+  show       : CAFE/1.0
+  raw_value  : 5365727665723a20434146452f312e300d0a
+
+[cache_control]
+  show       : private, x-gzip-ok=""
+  raw_value  : 43616368652d636f6e74726f6c3a20707269766174652c20782d677a69702d6f6b3d22220d0a
+
+[content_length_header]
+  show       : 1272
+  raw_value  : 436f6e74656e742d6c656e6774683a20313237320d0a
+
+[content_length]
+  show       : 1272
+  raw_value  : 436f6e74656e742d6c656e6774683a20313237320d0a
+
+[date]
+  show       : Thu, 13 May 2004 10:17:14 GMT
+  raw_value  : 446174653a205468752c203133204d617920323030342031303a31373a313420474d540d0a
+
+[response]
+  show       : 1
+  raw_value  : None
+
+[response_number]
+  show       : 1
+  raw_value  : None
+
+[time]
+  show       : 0.971397000
+  raw_value  : None
+
+[request_in]
+  show       : 18
+  raw_value  : None
+
+[response_for_uri]
+  show       : http://pagead2.googlesyndication.com/pagead/ads?client=ca-pub-2309191948673629&random=1084443430285&lmt=1082467020&format=468x60_as&output=html&url=http%3A%2F%2Fwww.ethereal.com%2Fdownload.html&color_bg=FFFFFF&color_text=333333&color_link=000000&color_url=666633&color_border=666633
+  raw_value  : None
+
+[file_data]
+  show       : <html><head><style><!-- .ch{cursor:pointer;cursor:hand}a.ad:link { color: #000000 }a.ad:visited { color: #000000 }a.ad:hover { color: #000000 }a.ad:active { color: #000000 }a.search:link { color: #ffffff }a.search:visited { color: #ffffff }a.search:hover { color: #ffffff }a.search:active { color: #ffffff }a.attribution:link { color: #ffffff }a.attribution:visited { color: #ffffff }a.attribution:hover { color: #ffffff }a.attribution:active { color: #ffffff }  //--></style><script><!-- function ss(w,id) {window.status = w;return true;}function cs(){window.status='';}function ca(a){ top.location.href=document.getElementById(a).href;}function ga(o,e) {if (document.getElementById) {a=o.id.substring(1);p = "";r = "";g = e.target;if (g) {t = g.id;f = g.parentNode;if (f) {p = f.id;h = f.parentNode;if (h)r = h.id;}} else {h = e.srcElement;f = h.parentNode;if (f)p = f.id;t = h.id;}if (t==a || p==a || r==a)return true;top.location.href=document.getElementById(a).href}}//--></script></head><body bgColor="#ffffff" leftMargin="0" topMargin="0" marginwidth="0" marginheight="0"><table width="468" height="60" cellspacing="1" cellpadding="0" border="0" bgcolor="#666633"><tr><td><table width="466" height="58" cellspacing="0" cellpadding="1" border="0" bgcolor="#ffffff"><tr><td colspan="2" width="" height=""><table width="464" height="" cellspacing="0" cellpadding="2" border="0"><tr><td  id="taw0" class="ch" width="229" height="41" align="left" valign="top" onFocus="ss('go to www.servforce.com/','aw0')" onMouseOver="ss('go to www.servforce.com/','aw0')"  onMouseOut="cs()" onClick="ga(this,event)"><font style="font-size:11px; font-family:verdana,arial,sans-serif;"><a class="ad" id="aw0" target="_top" href="/pagead/adclick?sa=l&ai=AJdkfqs0oAFcks0ogAJe2QG8DQK-7B87m4zYAA34tB4TAGTf9BAA0GOQACEA5RAAA3d3duUGdoVmclFGbuM2btBAN2gDe2AzXhNHAAA&num=1&adurl=http://www.servforce.com/%3Frefer%3Dgoogle1&client=ca-pub-2309191948673629" onFocus="ss('go to www.servforce.com/','aw0')" onMouseOver="return ss('go to www.servforce.com/','aw0')"  onMouseOut="cs()"><b>ServForce</b></a></font><br><font style="font-size:10px; font-family:verdana,arial,sans-serif; color:#333333">Dedicated Servers - $75/mo &amp; up 1TB Xfer only $100 </font></td><td  id="taw1" class="ch" width="229" height="41" align="left" valign="top" onFocus="ss('go to Linux.ITtoolbox.com','aw1')" onMouseOver="ss('go to Linux.ITtoolbox.com','aw1')"  onMouseOut="cs()" onClick="ga(this,event)"><font style="font-size:11px; font-family:verdana,arial,sans-serif;"><a class="ad" id="aw1" target="_top" href="/pagead/adclick?sa=l&ai=AOKPbqs0oAFcks0ogAJe2QG8D5quyFMvgm3YAA34tB4jAGTf9BAA0GOQACIA5RAAA3d3duUGdoVmclFGbuM2btBAN2gDe2AzXhNHAAA&num=2&adurl=http://linux.ittoolbox.com/groups/groups.asp%3Fv%3DREDHAT-L&client=ca-pub-2309191948673629" onFocus="ss('go to Linux.ITtoolbox.com','aw1')" onMouseOver="return ss('go to Linux.ITtoolbox.com','aw1')"  onMouseOut="cs()"><b>Red Hat Discussion</b></a></font><br><font style="font-size:10px; font-family:verdana,arial,sans-serif; color:#333333">Free E-mail Based Support Red Hat Discussion Group </font></td></tr></table></td></tr><tr><td nowrap width="1%" height="11" bgcolor="#666633"></td><td nowrap width="99%" height="11" align="right" bgcolor="#666633"><a class="attribution" href="/pagead/userfeedback?url=http://www.ethereal.com/download.html&hl=en&adU=www.servforce.com/&adT=ServForce&adU=Linux.ITtoolbox.com&adT=Red+Hat+Discussion&done=1" target="_blank"><font style="font-size:10px; font-family:verdana,arial,sans-serif;">Ads by Google</font></a></td></tr></table></td></tr></table></body></html>
+  raw_value  : 3c68746d6c3e3c686561643e3c7374796c653e3c212d2d0a2e63687b637572736f723a706f696e7465723b637572736f723a68616e647d612e61643a6c696e6b207b20636f6c6f723a2023303030303030207d612e61643a76697369746564207b20636f6c6f723a2023303030303030207d612e61643a686f766572207b20636f6c6f723a2023303030303030207d612e61643a616374697665207b20636f6c6f723a2023303030303030207d612e7365617263683a6c696e6b207b20636f6c6f723a2023666666666666207d612e7365617263683a76697369746564207b20636f6c6f723a2023666666666666207d612e7365617263683a686f766572207b20636f6c6f723a2023666666666666207d612e7365617263683a616374697665207b20636f6c6f723a2023666666666666207d612e6174747269627574696f6e3a6c696e6b207b20636f6c6f723a2023666666666666207d612e6174747269627574696f6e3a76697369746564207b20636f6c6f723a2023666666666666207d612e6174747269627574696f6e3a686f766572207b20636f6c6f723a2023666666666666207d612e6174747269627574696f6e3a616374697665207b20636f6c6f723a2023666666666666207d20202f2f2d2d3e3c2f7374796c653e3c7363726970743e3c212d2d0a66756e6374696f6e20737328772c696429207b77696e646f772e737461747573203d20773b72657475726e20747275653b7d66756e6374696f6e20637328297b77696e646f772e7374617475733d27273b7d66756e6374696f6e2063612861297b20746f702e6c6f636174696f6e2e687265663d646f63756d656e742e676574456c656d656e74427949642861292e687265663b7d66756e6374696f6e206761286f2c6529207b69662028646f63756d656e742e676574456c656d656e744279496429207b613d6f2e69642e737562737472696e672831293b70203d2022223b72203d2022223b67203d20652e7461726765743b696620286729207b74203d20672e69643b66203d20672e706172656e744e6f64653b696620286629207b70203d20662e69643b68203d20662e706172656e744e6f64653b69662028682972203d20682e69643b7d7d20656c7365207b68203d20652e737263456c656d656e743b66203d20682e706172656e744e6f64653b69662028662970203d20662e69643b74203d20682e69643b7d69662028743d3d61207c7c20703d3d61207c7c20723d3d612972657475726e20747275653b746f702e6c6f636174696f6e2e687265663d646f63756d656e742e676574456c656d656e74427949642861292e687265667d7d2f2f2d2d3e3c2f7363726970743e3c2f686561643e3c626f6479206267436f6c6f723d222366666666666622206c6566744d617267696e3d22302220746f704d617267696e3d223022206d617267696e77696474683d223022206d617267696e6865696768743d2230223e3c7461626c652077696474683d2234363822206865696768743d223630222063656c6c73706163696e673d2231222063656c6c70616464696e673d22302220626f726465723d223022206267636f6c6f723d2223363636363333223e3c74723e3c74643e3c7461626c652077696474683d2234363622206865696768743d223538222063656c6c73706163696e673d2230222063656c6c70616464696e673d22312220626f726465723d223022206267636f6c6f723d2223666666666666223e3c74723e3c746420636f6c7370616e3d2232222077696474683d2222206865696768743d22223e3c7461626c652077696474683d2234363422206865696768743d22222063656c6c73706163696e673d2230222063656c6c70616464696e673d22322220626f726465723d2230223e3c74723e3c7464202069643d22746177302220636c6173733d226368222077696474683d2232323922206865696768743d2234312220616c69676e3d226c656674222076616c69676e3d22746f7022206f6e466f6375733d2273732827676f20746f207777772e73657276666f7263652e636f6d2f272c27617730272922206f6e4d6f7573654f7665723d2273732827676f20746f207777772e73657276666f7263652e636f6d2f272c2761773027292220206f6e4d6f7573654f75743d226373282922206f6e436c69636b3d22676128746869732c6576656e7429223e3c666f6e74207374796c653d22666f6e742d73697a653a313170783b20666f6e742d66616d696c793a76657264616e612c617269616c2c73616e732d73657269663b223e3c6120636c6173733d226164222069643d2261773022207461726765743d225f746f702220687265663d222f7061676561642f6164636c69636b3f73613d6c2661693d414a646b667173306f4146636b73306f67414a653251473844514b2d374238376d347a594141333474423454414754663942414130474f5141434541355241414133643364755547646f566d636c464762754d32627442414e3267446532417a58684e48414141266e756d3d3126616475726c3d687474703a2f2f7777772e73657276666f7263652e636f6d2f2533467265666572253344676f6f676c653126636c69656e743d63612d7075622d3233303931393139343836373336323922206f6e466f6375733d2273732827676f20746f207777772e73657276666f7263652e636f6d2f272c27617730272922206f6e4d6f7573654f7665723d2272657475726e2073732827676f20746f207777772e73657276666f7263652e636f6d2f272c2761773027292220206f6e4d6f7573654f75743d2263732829223e3c623e53657276466f7263653c2f623e3c2f613e3c2f666f6e743e3c62723e3c666f6e74207374796c653d22666f6e742d73697a653a313070783b20666f6e742d66616d696c793a76657264616e612c617269616c2c73616e732d73657269663b20636f6c6f723a23333333333333223e4465646963617465642053657276657273202d202437352f6d6f2026616d703b207570203154422058666572206f6e6c792024313030203c2f666f6e743e3c2f74643e3c7464202069643d22746177312220636c6173733d226368222077696474683d2232323922206865696768743d2234312220616c69676e3d226c656674222076616c69676e3d22746f7022206f6e466f6375733d2273732827676f20746f204c696e75782e4954746f6f6c626f782e636f6d272c27617731272922206f6e4d6f7573654f7665723d2273732827676f20746f204c696e75782e4954746f6f6c626f782e636f6d272c2761773127292220206f6e4d6f7573654f75743d226373282922206f6e436c69636b3d22676128746869732c6576656e7429223e3c666f6e74207374796c653d22666f6e742d73697a653a313170783b20666f6e742d66616d696c793a76657264616e612c617269616c2c73616e732d73657269663b223e3c6120636c6173733d226164222069643d2261773122207461726765743d225f746f702220687265663d222f7061676561642f6164636c69636b3f73613d6c2661693d414f4b50627173306f4146636b73306f67414a65325147384435717579464d76676d3359414133347442346a414754663942414130474f5141434941355241414133643364755547646f566d636c464762754d32627442414e3267446532417a58684e48414141266e756d3d3226616475726c3d687474703a2f2f6c696e75782e6974746f6f6c626f782e636f6d2f67726f7570732f67726f7570732e617370253346762533445245444841542d4c26636c69656e743d63612d7075622d3233303931393139343836373336323922206f6e466f6375733d2273732827676f20746f204c696e75782e4954746f6f6c626f782e636f6d272c27617731272922206f6e4d6f7573654f7665723d2272657475726e2073732827676f20746f204c696e75782e4954746f6f6c626f782e636f6d272c2761773127292220206f6e4d6f7573654f75743d2263732829223e3c623e526564204861742044697363757373696f6e3c2f623e3c2f613e3c2f666f6e743e3c62723e3c666f6e74207374796c653d22666f6e742d73697a653a313070783b20666f6e742d66616d696c793a76657264616e612c617269616c2c73616e732d73657269663b20636f6c6f723a23333333333333223e4672656520452d6d61696c20426173656420537570706f727420526564204861742044697363757373696f6e2047726f7570203c2f666f6e743e3c2f74643e3c2f74723e3c2f7461626c653e3c2f74643e3c2f74723e3c74723e3c7464206e6f777261702077696474683d22312522206865696768743d22313122206267636f6c6f723d2223363636363333223e3c2f74643e3c7464206e6f777261702077696474683d2239392522206865696768743d2231312220616c69676e3d22726967687422206267636f6c6f723d2223363636363333223e3c6120636c6173733d226174747269627574696f6e2220687265663d222f7061676561642f75736572666565646261636b3f75726c3d687474703a2f2f7777772e657468657265616c2e636f6d2f646f776e6c6f61642e68746d6c26686c3d656e266164553d7777772e73657276666f7263652e636f6d2f266164543d53657276466f726365266164553d4c696e75782e4954746f6f6c626f782e636f6d266164543d5265642b4861742b44697363757373696f6e26646f6e653d3122207461726765743d225f626c616e6b223e3c666f6e74207374796c653d22666f6e742d73697a653a313070783b20666f6e742d66616d696c793a76657264616e612c617269616c2c73616e732d73657269663b223e41647320627920476f6f676c653c2f666f6e743e3c2f613e3c2f74643e3c2f74723e3c2f7461626c653e3c2f74643e3c2f74723e3c2f7461626c653e3c2f626f64793e3c2f68746d6c3e
+
+====================================================================================================
+Packet #38
+Type: HTTP Response
+Response: HTTP/1.1 200 OK
+
+HTTP fields / headers:
+----------------------------------------------------------------------------------------------------
+
+[]
+  show       : HTTP/1.1 200 OK\r\n
+  raw_value  : 485454502f312e3120323030204f4b0d0a
+  show       : \r\n
+  raw_value  : 0d0a
+
+[_ws_expert]
+  show       : None
+  raw_value  : None
+
+[chat]
+  show       : 
+  raw_value  : 
+
+[_ws_expert_message]
+  show       : HTTP/1.1 200 OK\r\n
+  raw_value  : None
+
+[_ws_expert_severity]
+  show       : 2097152
+  raw_value  : None
+
+[_ws_expert_group]
+  show       : 33554432
+  raw_value  : None
+
+[response_version]
+  show       : HTTP/1.1
+  raw_value  : 485454502f312e31
+
+[response_code]
+  show       : 200
+  raw_value  : 323030
+
+[response_code_desc]
+  show       : OK
+  raw_value  : 323030
+
+[response_phrase]
+  show       : OK
+  raw_value  : 4f4b
+
+[date]
+  show       : Thu, 13 May 2004 10:17:12 GMT
+  raw_value  : 446174653a205468752c203133204d617920323030342031303a31373a313220474d540d0a
+
+[response_line]
+  show       : Date: Thu, 13 May 2004 10:17:12 GMT 
+  raw_value  : 446174653a205468752c203133204d617920323030342031303a31373a313220474d540d0a
+  show       : Server: Apache 
+  raw_value  : 5365727665723a204170616368650d0a
+  show       : Last-Modified: Tue, 20 Apr 2004 13:17:00 GMT 
+  raw_value  : 4c6173742d4d6f6469666965643a205475652c2032302041707220323030342031333a31373a303020474d540d0a
+  show       : ETag: "9a01a-4696-7e354b00" 
+  raw_value  : 455461673a202239613031612d343639362d3765333534623030220d0a
+  show       : Accept-Ranges: bytes 
+  raw_value  : 4163636570742d52616e6765733a2062797465730d0a
+  show       : Content-Length: 18070 
+  raw_value  : 436f6e74656e742d4c656e6774683a2031383037300d0a
+  show       : Keep-Alive: timeout=15, max=100 
+  raw_value  : 4b6565702d416c6976653a2074696d656f75743d31352c206d61783d3130300d0a
+  show       : Connection: Keep-Alive 
+  raw_value  : 436f6e6e656374696f6e3a204b6565702d416c6976650d0a
+  show       : Content-Type: text/html; charset=ISO-8859-1 
+  raw_value  : 436f6e74656e742d547970653a20746578742f68746d6c3b20636861727365743d49534f2d383835392d310d0a
+
+[server]
+  show       : Apache
+  raw_value  : 5365727665723a204170616368650d0a
+
+[last_modified]
+  show       : Tue, 20 Apr 2004 13:17:00 GMT
+  raw_value  : 4c6173742d4d6f6469666965643a205475652c2032302041707220323030342031333a31373a303020474d540d0a
+
+[content_length_header]
+  show       : 18070
+  raw_value  : 436f6e74656e742d4c656e6774683a2031383037300d0a
+
+[content_length]
+  show       : 18070
+  raw_value  : 436f6e74656e742d4c656e6774683a2031383037300d0a
+
+[connection]
+  show       : Keep-Alive
+  raw_value  : 436f6e6e656374696f6e3a204b6565702d416c6976650d0a
+
+[content_type]
+  show       : text/html; charset=ISO-8859-1
+  raw_value  : 436f6e74656e742d547970653a20746578742f68746d6c3b20636861727365743d49534f2d383835392d310d0a
+
+[response]
+  show       : 1
+  raw_value  : None
+
+[response_number]
+  show       : 1
+  raw_value  : None
+
+[time]
+  show       : 3.935659000
+  raw_value  : None
+
+[request_in]
+  show       : 4
+  raw_value  : None
+
+[response_for_uri]
+  show       : http://www.ethereal.com/download.html
+  raw_value  : None
+
+[file_data]
+  show       : <?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE html   PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"   "DTD/xhtml1-strict.dtd"> <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">   <head>     <title>Ethereal: Download</title>     <style type="text/css" media="all">  @import url("mm/css/ethereal-3-0.css");     </style> </head>   <body>     <div class="top">     <table width="100%" cellspacing="0" cellpadding="0" border="0" summary="">       <tr>         <td valign="middle" width="1">    <a href="/"><img class="logo" title="Ethereal home" src="mm/image/elogo-64-trans.gif" alt="" width="64" height="64"></img></a>         </td>         <td align="left" valign="middle">           <h2>Ethereal</h2>           <h5 style="white-space: nowrap;">Download</h5>         </td>         <td align="right">      <table style="margin-right: 10px;" cellspacing="0" cellpadding="0" border="0" summary="">               <form name="search" method="post" action="http://www.ethereal.com/cgi-bin/htsearch">               <tr>          <td>            <div class="topformtext">                   <a href="search.html">Search:</a>     </div>          </td>          <td>            <div class="topformtext">                   <input type="text" size="12" name="words">     <input type="hidden" name="config" value="ethereal">     </div>          </td>   <td valign="bottom">     <input type="image" class="gobutton" src="mm/image/go-button.gif">   </td>               </tr>               </form> </table>    </div>         </td>       </tr>     </table>     </div> <div class="sitebar"> <p>   <a href="/">Home</a>   <span class="sitebarsep">|</span>   <a href="introduction.html">Introduction</a>   <span class="sitebarsep">|</span>   Download   <span class="sitebarsep">|</span>   <a href="docs/">Documentation</a>   <span class="sitebarsep">|</span>   <a href="lists/">Lists</a>   <span class="sitebarsep">|</span>   <a href="faq.html">FAQ</a>   <span class="sitebarsep">|</span>   <a href="development.html">Development</a> </p> </div> <div class="navbar"> <p>   <a href="#releases">Official Releases</a>   <span class="navbarsep">|</span>   <a href="#otherplat">Other Platforms</a>   <span class="navbarsep">|</span>   <a href="#otherdown">Other Downloads</a>   <span class="navbarsep">|</span>   <a href="#legal">Legal Notices</a> </p> </div> <!-- Begin Ad 468x60 --> <div class="adblock"> <script type="text/javascript"><!-- google_ad_client = "pub-2309191948673629"; google_ad_width = 468; google_ad_height = 60; google_ad_format = "468x60_as"; google_color_border = "666633"; google_color_bg = "FFFFFF"; google_color_link = "000000"; google_color_url = "666633"; google_color_text = "333333"; //--></script> <script type="text/javascript"   src="http://pagead2.googlesyndication.com/pagead/show_ads.js"> </script> </div> <!-- End Ad --> <div class="block">   <h2 class="headerline" id="releases">Official Releases</h2> <p>   The Official source code release and installers for Windows, Red Hat   Linux/Fedora, and Solaris can be found on the main Ethereal web site and   its mirrors. </p> <h4>Source Code</h4> <p> HTTP: <a href="http://www.ethereal.com/distribution/">Main site</a> <a href="http://ethereal.planetmirror.com/distribution/">Australia</a> <a href="http://www.mirrors.wiretapped.net/security/packet-capture/ethereal/">Australia</a> <a href="http://netmirror.org/mirror/ftp.ethereal.com/">Germany</a> <a href="http://ethereal.netarc.jp/distribution/">Japan</a> <a href="http://ethereal.secuwiz.com/distribution/">Korea</a> <a href="http://ethereal.0ni0n.org/distribution/">Malaysia</a> <a href="http://ftp.sunet.se/pub/network/monitoring/ethereal/">Sweden</a> <a href="http://sourceforge.net/project/showfiles.php?group_id=255">SourceForge</a> </p> <p> FTP: <a href="ftp://ftp.ethereal.com/pub/ethereal/">Main site</a> <a href="ftp://ftp.planetmirror.com/pub/ethereal/">Australia</a> <a href="ftp://ftp.mirrors.wiretapped.net/pub/security/packet-capture/ethereal/">Australia</a> <a href="ftp://gd.tuwien.ac.at/infosys/security/ethereal/">Austria</a> <a href="ftp://netmirror.org/ftp.ethereal.com/">Germany</a> <a href="ftp://ftp.ayamura.org/pub/ethereal/">Japan</a> <a href="ftp://ftp.azc.uam.mx/mirrors/ethereal/">Mexico</a> <a href="ftp://ftp.sunet.se/pub/network/monitoring/ethereal/">Sweden</a> </p> <p> The latest development sources are available via <a href="development.html#anoncvs">anonymous CVS</a>. </p> <h4>Windows 98/ME/2000/XP/2003 Installers</h4> <p> HTTP: <a href="http://www.ethereal.com/distribution/win32/">Main site</a> <a href="http://ethereal.planetmirror.com/distribution/win32/">Australia</a> <a href="http://www.mirrors.wiretapped.net/security/packet-capture/ethereal/win32/">Australia</a> <a href="http://netmirror.org/mirror/ftp.ethereal.com/win32/">Germany</a> <a href="http://ethereal.netarc.jp/distribution/win32/">Japan</a> <a href="http://ethereal.secuwiz.com/distribution/win32/">Korea</a> <a href="http://ethereal.0ni0n.org/distribution/win32/">Malaysia</a> <a href="http://ftp.sunet.se/pub/network/monitoring/ethereal/win32/">Sweden</a> <a href="http://sourceforge.net/project/showfiles.php?group_id=255">SourceForge</a> </p> <p> FTP: <a href="ftp://ftp.ethereal.com/pub/ethereal/win32/">Main site</a> <a href="ftp://ftp.planetmirror.com/pub/ethereal/win32/">Australia</a> <a href="ftp://ftp.mirrors.wiretapped.net/pub/security/packet-capture/ethereal/win32/">Australia</a> <a href="ftp://gd.tuwien.ac.at/infosys/security/ethereal/win32/">Austria</a> <a href="ftp://netmirror.org/ftp.ethereal.com/win32/">Germany</a> <a href="ftp://ftp.ayamura.org/pub/ethereal/win32/">Japan</a> <a href="ftp://ftp.azc.uam.mx/mirrors/ethereal/win32/">Mexico</a> <a href="ftp://ftp.sunet.se/pub/network/monitoring/ethereal/win32/">Sweden</a> </p> <h4>Red Hat Linux / Fedora Packages</h4> <p> HTTP: <a href="http://www.ethereal.com/distribution/rpms/">Main site</a> <a href="http://ethereal.planetmirror.com/distribution/rpms/">Australia</a> <a href="http://www.mirrors.wiretapped.net/security/packet-capture/ethereal/rpms/">Australia</a> <a href="http://netmirror.org/mirror/ftp.ethereal.com/rpms/">Germany</a> <a href="http://ethereal.netarc.jp/distribution/rpms/">Japan</a> <a href="http://ethereal.secuwiz.com/distribution/rpms/">Korea</a> <a href="http://ethereal.0ni0n.org/distribution/rpms/">Malaysia</a> <a href="http://ftp.sunet.se/pub/network/monitoring/ethereal/rpms/">Sweden</a> </p> <p> FTP: <a href="ftp://ftp.ethereal.com/pub/ethereal/rpms/">Main site</a> <a href="ftp://ftp.planetmirror.com/pub/ethereal/rpms/">Australia</a> <a href="ftp://ftp.mirrors.wiretapped.net/pub/security/packet-capture/ethereal/rpms/">Australia</a> <a href="ftp://gd.tuwien.ac.at/infosys/security/ethereal/rpms/">Austria</a> <a href="ftp://netmirror.org/ftp.ethereal.com/rpms/">Germany</a> <a href="ftp://ftp.ayamura.org/pub/ethereal/rpms/">Japan</a> <a href="ftp://ftp.azc.uam.mx/mirrors/ethereal/rpms/">Mexico</a> <a href="ftp://ftp.sunet.se/pub/network/monitoring/ethereal/rpms/">Sweden</a> </p> <h4>Solaris Packages</h4> <p> HTTP: <a href="http://www.ethereal.com/distribution/solaris/">Main site</a> <a href="http://ethereal.planetmirror.com/distribution/solaris/">Australia</a> <a href="http://www.mirrors.wiretapped.net/security/packet-capture/ethereal/solaris/">Australia</a> <a href="http://netmirror.org/mirror/ftp.ethereal.com/solaris/">Germany</a> <a href="http://ethereal.netarc.jp/distribution/solaris/">Japan</a> <a href="http://ethereal.secuwiz.com/distribution/solaris/">Korea</a> <a href="http://ethereal.0ni0n.org/distribution/solaris/">Malaysia</a> <a href="http://ftp.sunet.se/pub/network/monitoring/ethereal/solaris/">Sweden</a> <a href="http://sourceforge.net/project/showfiles.php?group_id=255">SourceForge</a> </p> <p> FTP: <a href="ftp://ftp.ethereal.com/pub/ethereal/solaris/">Main site</a> <a href="ftp://ftp.planetmirror.com/pub/ethereal/solaris/">Australia</a> <a href="ftp://ftp.mirrors.wiretapped.net/pub/security/packet-capture/ethereal/solaris/">Australia</a> <a href="ftp://gd.tuwien.ac.at/infosys/security/ethereal/solaris/">Austria</a> <a href="ftp://netmirror.org/ftp.ethereal.com/solaris/">Germany</a> <a href="ftp://ftp.ayamura.org/pub/ethereal/solaris/">Japan</a> <a href="ftp://ftp.azc.uam.mx/mirrors/ethereal/solaris/">Mexico</a> <a href="ftp://ftp.sunet.se/pub/network/monitoring/ethereal/solaris/">Sweden</a> </p> </div> <div class="block">   <h2 class="headerline" id="otherplat">Other Platforms</h2> <p>   Binary distributions and ready-to-compile packages are available for   most platforms. Please note these packages may depend on external   libraries including GLib/GTK+, libpcap, Net-SNMP, PCRE, and GNU ADNS.   You may have to download and install them before installing Ethereal. </p> <table cellspacing="1" cellpadding="2" border="0" summary=""> <tr bgcolor="#cccc99">   <th>Platform</th>   <th>Location(s)</th> </tr> <tr>   <td valign="top">Apple Computer:<br>Mac OS X</td>   <td valign="top">     <a href="http://fink.sourceforge.net/pdb/package.php/ethereal">Fink Project</a>     <a href="http://darwinports.opendarwin.org">DarwinPorts</a> </td> </tr> <tr class="even">   <td valign="top">Be (Palm?):<br>BeOS</td>   <td valign="top">     <a href="http://www.bebits.com/app/2979">BeBits</a> </td> </tr> <tr>   <td valign="top">Debian:<br>Debian GNU/Linux</td>   <td valign="top">     <a href="http://packages.debian.org/stable/net/ethereal">stable</a>,     <a href="http://packages.debian.org/testing/net/ethereal">testing</a>,     <a href="http://packages.debian.org/unstable/net/ethereal">unstable</a> </td> </tr> <tr class="even">   <td valign="top">The FreeBSD Project:<br>FreeBSD</td>   <td valign="top">     <a href="http://www.freebsd.org/cgi/ports.cgi?query=ethereal&stype=all">ports</a> </td> </tr> <tr>   <td valign="top">Gentoo Technologies:<br>Gentoo Linux</td>   <td valign="top">     <a href="http://www.gentoo.org/packages/net-analyzer/ethereal.html">portage</a> </td> </tr> <tr class="even">   <td valign="top">HP:<br>Tru64 Unix</td>   <td valign="top">     <a href="ftp://ftp.thewrittenword.com/packages/by-name/ethereal-0.9.16/">The Written Word (4.0d, 5.1)</a><super><small>1</small></super> </td> </tr> <tr>   <td valign="top">HP:<br>HP-UX</td>   <td valign="top">     <a href="http://hpux.connect.org.uk/hppd/hpux/Gtk/Applications/">UK</a>,     <a href="http://hpux.asknet.de/hppd/hpux/Gtk/Applications/">Germany</a>,     <a href="http://hpux.tn.tudelft.nl/hppd/hpux/Gtk/Applications/">Netherlands</a>,     <a href="http://hpux.cs.utah.edu/hppd/hpux/Gtk/Applications/">US</a>,     <a href="http://hpux.ee.ualberta.ca/hppd/hpux/Gtk/Applications/">Canada</a>,     <a href="http://hpux.petech.ac.za//hppd/hpux/Gtk/Applications/">South&nbsp;Africa</a>     <br>(more mirrors are listed on each site's home page),<br>     <a href="ftp://ftp.thewrittenword.com/packages/by-name/ethereal-0.9.16/">The Written Word (10.20, 11.00, 11.11)</a><super><small>1</small></super> </td> </tr> <tr class="even">   <td valign="top">IBM:<br>AIX</td>   <td valign="top">     <a href="http://www.bullfreeware.com/">Bull archive</a><br>     <a href="http://ftp.univie.ac.at/aix/">Vienna University mirror</a><br>     <a href="http://aixpdslib.seas.ucla.edu/bull.html">UCLA mirror</a> </td> </tr>   <!-- Ashley G Chaloner <csuwf [at] dcs.warwick.ac.uk> --> <tr>   <td valign="top">IBM:<br>S/390 Linux (Red Hat 7.2)</td>   <td valign="top">     <a href="http://www.dcs.warwick.ac.uk/~csuwf/RPMs/">Ashley Chaloner</a><br> </td> </tr> <tr class="even">   <td valign="top">MandrakeSoft:<br>Mandrake Linux</td>   <td valign="top">     <a href="http://www.linux-mandrake.com/en/cookerdevel.php3">Cooker</a>     (in the contrib section) </td> </tr> <tr>   <td valign="top">Microsoft:<br>Windows (Intel, 32-bit)</td>   <td valign="top">     <a href="http://www.ethereal.com/distribution/win32">local archive</a><br>     <a href="http://www.openxtra.com/products/ethereal_xtra.htm">OPENEXTRA</a> </td> </tr> <tr class="even">   <td valign="top">NetBSD Foundation:<br>NetBSD</td>   <td valign="top">     <a href="ftp://ftp.netbsd.org/pub/NetBSD/packages/pkgsrc/net/ethereal/README.html">packages</a> </td> </tr> <tr>   <td valign="top">OpenBSD:<br>OpenBSD</td>   <td valign="top">     <a href="http://www.openbsd.org/cgi-bin/cvsweb/ports/net/ethereal/">ports</a> </td> </tr> <tr class="even">   <td valign="top">PLD Team:<br>PLD Linux</td>   <td valign="top">     <a href="ftp://ftp.pld-linux.org/dists/ra">FTP site</a> </td> </tr> <tr>   <td valign="top">Red Hat:<br>Red Hat Linux</td>   <td valign="top">     <a href="http://rpmfind.net/linux/RPM/EByName.html">RPMFind</a> (requires glibc)<br>     <a href="ftp://ftp.falsehope.com/home/gomez/ethereal/">Henri Gomez</a><br>     <a href="ftp://ftp.thewrittenword.com/packages/by-name/ethereal-0.9.16/">The Written Word (7.1)</a><super><small>1</small></super><br>     <a href="ftp://ftp.ethereal.com/pub/ethereal/rpms/">local archive</a><br> </td> </tr> <tr class="even">   <td valign="top">ROCK Linux:<br>ROCK Linux</td>   <td valign="top">     <a href="http://www.rocklinux.org/sources/package/tsa/ethereal/">package</a><br> </td> </tr> <tr>   <td valign="top">SCO (formerly Caldera):<br>UnixWare/OpenUnix</td>   <td valign="top">     <a href="http://www.sco.com/skunkware/">Skunkware</a>:     <a href="ftp://ftp2.caldera.com/pub/skunkware/uw7/net/ethereal/">UnixWare 7</a>     <a href="ftp://ftp2.caldera.com/pub/skunkware/ou8/net/ethereal/">Open UNIX 8</a> </td> </tr> <tr class="even">   <td valign="top">SGI:<br>Irix</td>   <td valign="top">     <a href="ftp://ftp.thewrittenword.com/packages/by-name/ethereal-0.9.16/">The Written Word (6.5)</a><super><small>1</small></super><br>     <a href="http://freeware.sgi.com/index-by-alpha.html">SGI Freeware</a> </td> </tr> <tr>   <td valign="top">Slackware Linux:<br>Slackware Linux</td>   <td valign="top">     <a href="http://www.linuxpackages.net/search_view.php?by=name&name=ethereal&ver=">Linux Packages</a> </td> </tr> <tr class="even">   <td valign="top">Sun Microsystems:<br>Solaris/Intel</td>   <td valign="top">     <a href="http://www.sun.com/solaris/freeware.html">Solaris 01/01 update</a> (unsupported) </td> </tr> <tr>   <td valign="top">Sun Microsystems:<br>Solaris/SPARC</td>   <td valign="top">     <a href="http://www.ethereal.com/distribution/solaris/">local archive (8, 9)</a><br>     <a href="ftp://ftp.thewrittenword.com/packages/by-name/ethereal-0.9.16/">The Written Word (2.5.1 - 9)</a><super><small>1</small></super><br>     <a href="http://www.sunfreeware.com/">Sunfreeware.com (7, 8)</a><br>     <a href="http://www.sun.com/solaris/freeware/index.html">Solaris 8 and 9 Companion Software CDs</a> (unsupported) </td> </tr> <tr class="even">   <td valign="top">SuSE:<br>SuSE Linux</td>   <td valign="top">     <a href="ftp://ftp.suse.com/pub/suse/">SuSE FTP site</a>.     <a href="http://www.suse.com/us/private/download/ftp/int_mirrors.html">Mirrors</a> are also available. </td> </tr> </table> <p>   If you know of any binary distribution not listed here, please send mail   to   <a href="mailto:ethereal-web[AT]ethereal.com">ethereal-web[AT]ethereal.com</a> . </p> <p class="footnote">   [1] Each Ethereal package produced by   <a href="http://www.thewrittenword.com">The Written Word</a> depends on the   <a href="ftp://ftp.thewrittenword.com/packages/by-name/zlib-1.1.4/">zlib</a>,   <a href="ftp://ftp.thewrittenword.com/packages/by-name/glib-1.2.10/">Glib</a>,   <a href="ftp://ftp.thewrittenword.com/packages/by-name/gtk+-1.2.10/">GTK+</a>,   <a href="ftp://ftp.thewrittenword.com/packages/by-name/perl-5.6.1/">Perl</a>, and   <a href="ftp://ftp.thewrittenword.com/packages/by-name/net-snmp-5.0.9/">Net-SNMP</a>   packages.   Please refer to The Written Word's   <a href="ftp://ftp.thewrittenword.com/packages/INSTALL.pdf">documentation</a>   for installation instructions.   Please do not call The Written Word for support. Email   <a href="mailto:free-support[AT]thewrittenword.com">free-support[AT]thewrittenword.com</a>   with questions. </p> </div> <div class="block">   <h2 class="headerline" id="otherdown">Other Downloads</h2> <h4>Sample Captures</h4> <p>   A menagerie of capture files is available on our   <a href="../sample/">sample captures</a> page. </p> <h4>Documentation</h4> <p>   A PDF version of the Ethereal User's Guide is available in the   <a href="../docs/#resources">documentation</a> page. </div> <div class="block">   <h2 class="headerline" id="legal">Legal Notices</h2> <p> AIX is a registered trademark of International Business Machines, Inc. Tru64 is a registered trademark of Compaq Computer Corporation. Debian is a registered trademark of Software In The Public Interest, Inc. FreeBSD is a registered trademark of Walnut Creek CDROM, Inc. HP-UX is a registered trademark of Hewlett-Packard Company. Irix is a registered trademark of Silicon Graphics, Inc. LinuxPPC is a trademark of Jeff Carr. Mac OS is a registered trademark of Apple Computer, Inc. NetBSD is a registered trademark of the NetBSD Foundation. Red Hat is a registered trademark of Red Hat, Inc. Linux is a registered trademark of Linus Torvalds. SCO and Unixware are registered trademarks of Santa Cruz Operation, Inc. Slackware is a registered trademark of Patrick Volkerding. Solaris is a registered trademark of Sun Microsystems, Inc. SuSE is a registered trademark of SuSE AG. Microsoft, Windows, Windows 95, Windows 98, Windows ME, Windows NT, Windows 2000, and Windows XP are registered trademarks of Microsoft, Inc. All other trademarks on this site are property of their respective owners. </p> </div> <div class="footer">   Please send support questions about Ethereal to the   <a href="mailto:ethereal-users[AT]ethereal.com">ethereal-users[AT]ethereal.com</a>     mailing list.<br>   For corrections/additions/suggestions for this web page (and <b>not</b> Ethereal   support questions), please send email to   <a href="mailto:ethereal-web[AT]ethereal.com">ethereal-web[AT]ethereal.com</a> .<br>   Last modified: Tue, April 20 2004. </div> </body> </html> 
+  raw_value  : 3c3f786d6c2076657273696f6e3d22312e302220656e636f64696e673d225554462d38223f3e0a3c21444f43545950452068746d6c0a20205055424c494320222d2f2f5733432f2f445444205848544d4c20312e30205374726963742f2f454e220a2020224454442f7868746d6c312d7374726963742e647464223e0a3c68746d6c20786d6c6e733d22687474703a2f2f7777772e77332e6f72672f313939392f7868746d6c2220786d6c3a6c616e673d22656e22206c616e673d22656e223e0a20203c686561643e0a202020203c7469746c653e457468657265616c3a20446f776e6c6f61643c2f7469746c653e0a202020203c7374796c6520747970653d22746578742f63737322206d656469613d22616c6c223e0a0940696d706f72742075726c28226d6d2f6373732f657468657265616c2d332d302e63737322293b0a202020203c2f7374796c653e0a3c2f686561643e0a20203c626f64793e0a202020203c64697620636c6173733d22746f70223e0a202020203c7461626c652077696474683d2231303025222063656c6c73706163696e673d2230222063656c6c70616464696e673d22302220626f726465723d2230222073756d6d6172793d22223e0a2020202020203c74723e0a20202020202020203c74642076616c69676e3d226d6964646c65222077696474683d2231223e0a0920203c6120687265663d222f223e3c696d6720636c6173733d226c6f676f22207469746c653d22457468657265616c20686f6d6522207372633d226d6d2f696d6167652f656c6f676f2d36342d7472616e732e6769662220616c743d22222077696474683d22363422206865696768743d223634223e3c2f696d673e3c2f613e0a20202020202020203c2f74643e0a20202020202020203c746420616c69676e3d226c656674222076616c69676e3d226d6964646c65223e0a202020202020202020203c68323e457468657265616c3c2f68323e0a202020202020202020203c6835207374796c653d2277686974652d73706163653a206e6f777261703b223e446f776e6c6f61643c2f68353e0a20202020202020203c2f74643e0a20202020202020203c746420616c69676e3d227269676874223e0a09202020203c7461626c65207374796c653d226d617267696e2d72696768743a20313070783b222063656c6c73706163696e673d2230222063656c6c70616464696e673d22302220626f726465723d2230222073756d6d6172793d22223e0a20202020202020202020202020203c666f726d206e616d653d2273656172636822206d6574686f643d22706f73742220616374696f6e3d22687474703a2f2f7777772e657468657265616c2e636f6d2f6367692d62696e2f6874736561726368223e0a20202020202020202020202020203c74723e0a0920202020202020203c74643e0a09202020202020202020203c64697620636c6173733d22746f70666f726d74657874223e0a2020202020202020202020202020202020203c6120687265663d227365617263682e68746d6c223e5365617263683a3c2f613e0a090920203c2f6469763e0a0920202020202020203c2f74643e0a0920202020202020203c74643e0a09202020202020202020203c64697620636c6173733d22746f70666f726d74657874223e0a2020202020202020202020202020202020203c696e70757420747970653d2274657874222073697a653d22313222206e616d653d22776f726473223e0a090920203c696e70757420747970653d2268696464656e22206e616d653d22636f6e666967222076616c75653d22657468657265616c223e0a090920203c2f6469763e0a0920202020202020203c2f74643e0a09093c74642076616c69676e3d22626f74746f6d223e0a090920203c696e70757420747970653d22696d6167652220636c6173733d22676f627574746f6e22207372633d226d6d2f696d6167652f676f2d627574746f6e2e676966223e0a09093c2f74643e0a20202020202020202020202020203c2f74723e0a20202020202020202020202020203c2f666f726d3e0a3c2f7461626c653e0a0920203c2f6469763e0a20202020202020203c2f74643e0a2020202020203c2f74723e0a202020203c2f7461626c653e0a202020203c2f6469763e0a3c64697620636c6173733d2273697465626172223e0a3c703e0a20203c6120687265663d222f223e486f6d653c2f613e0a20203c7370616e20636c6173733d2273697465626172736570223e7c3c2f7370616e3e0a20203c6120687265663d22696e74726f64756374696f6e2e68746d6c223e496e74726f64756374696f6e3c2f613e0a20203c7370616e20636c6173733d2273697465626172736570223e7c3c2f7370616e3e0a2020446f776e6c6f61640a20203c7370616e20636c6173733d2273697465626172736570223e7c3c2f7370616e3e0a20203c6120687265663d22646f63732f223e446f63756d656e746174696f6e3c2f613e0a20203c7370616e20636c6173733d2273697465626172736570223e7c3c2f7370616e3e0a20203c6120687265663d226c697374732f223e4c697374733c2f613e0a20203c7370616e20636c6173733d2273697465626172736570223e7c3c2f7370616e3e0a20203c6120687265663d226661712e68746d6c223e4641513c2f613e0a20203c7370616e20636c6173733d2273697465626172736570223e7c3c2f7370616e3e0a20203c6120687265663d22646576656c6f706d656e742e68746d6c223e446576656c6f706d656e743c2f613e0a3c2f703e0a3c2f6469763e0a3c64697620636c6173733d226e6176626172223e0a3c703e0a20203c6120687265663d222372656c6561736573223e4f6666696369616c2052656c65617365733c2f613e0a20203c7370616e20636c6173733d226e6176626172736570223e7c3c2f7370616e3e0a20203c6120687265663d22236f74686572706c6174223e4f7468657220506c6174666f726d733c2f613e0a20203c7370616e20636c6173733d226e6176626172736570223e7c3c2f7370616e3e0a20203c6120687265663d22236f74686572646f776e223e4f7468657220446f776e6c6f6164733c2f613e0a20203c7370616e20636c6173733d226e6176626172736570223e7c3c2f7370616e3e0a20203c6120687265663d22236c6567616c223e4c6567616c204e6f74696365733c2f613e0a3c2f703e0a3c2f6469763e0a3c212d2d20426567696e20416420343638783630202d2d3e0a3c64697620636c6173733d226164626c6f636b223e0a3c73637269707420747970653d22746578742f6a617661736372697074223e3c212d2d0a676f6f676c655f61645f636c69656e74203d20227075622d32333039313931393438363733363239223b0a676f6f676c655f61645f7769647468203d203436383b0a676f6f676c655f61645f686569676874203d2036303b0a676f6f676c655f61645f666f726d6174203d20223436387836305f6173223b0a676f6f676c655f636f6c6f725f626f72646572203d2022363636363333223b0a676f6f676c655f636f6c6f725f6267203d2022464646464646223b0a676f6f676c655f636f6c6f725f6c696e6b203d2022303030303030223b0a676f6f676c655f636f6c6f725f75726c203d2022363636363333223b0a676f6f676c655f636f6c6f725f74657874203d2022333333333333223b0a2f2f2d2d3e3c2f7363726970743e0a3c73637269707420747970653d22746578742f6a617661736372697074220a20207372633d22687474703a2f2f706167656164322e676f6f676c6573796e6469636174696f6e2e636f6d2f7061676561642f73686f775f6164732e6a73223e0a3c2f7363726970743e0a3c2f6469763e0a3c212d2d20456e64204164202d2d3e0a3c64697620636c6173733d22626c6f636b223e0a20203c683220636c6173733d226865616465726c696e65222069643d2272656c6561736573223e4f6666696369616c2052656c65617365733c2f68323e0a3c703e0a2020546865204f6666696369616c20736f7572636520636f64652072656c6561736520616e6420696e7374616c6c65727320666f722057696e646f77732c20526564204861740a20204c696e75782f4665646f72612c20616e6420536f6c617269732063616e20626520666f756e64206f6e20746865206d61696e20457468657265616c20776562207369746520616e640a2020697473206d6972726f72732e0a3c2f703e0a3c68343e536f7572636520436f64653c2f68343e0a3c703e0a485454503a0a3c6120687265663d22687474703a2f2f7777772e657468657265616c2e636f6d2f646973747269627574696f6e2f223e4d61696e20736974653c2f613e0a3c6120687265663d22687474703a2f2f657468657265616c2e706c616e65746d6972726f722e636f6d2f646973747269627574696f6e2f223e4175737472616c69613c2f613e0a3c6120687265663d22687474703a2f2f7777772e6d6972726f72732e776972657461707065642e6e65742f73656375726974792f7061636b65742d636170747572652f657468657265616c2f223e4175737472616c69613c2f613e0a3c6120687265663d22687474703a2f2f6e65746d6972726f722e6f72672f6d6972726f722f6674702e657468657265616c2e636f6d2f223e4765726d616e793c2f613e0a3c6120687265663d22687474703a2f2f657468657265616c2e6e65746172632e6a702f646973747269627574696f6e2f223e4a6170616e3c2f613e0a3c6120687265663d22687474703a2f2f657468657265616c2e7365637577697a2e636f6d2f646973747269627574696f6e2f223e4b6f7265613c2f613e0a3c6120687265663d22687474703a2f2f657468657265616c2e306e69306e2e6f72672f646973747269627574696f6e2f223e4d616c61797369613c2f613e0a3c6120687265663d22687474703a2f2f6674702e73756e65742e73652f7075622f6e6574776f726b2f6d6f6e69746f72696e672f657468657265616c2f223e53776564656e3c2f613e0a3c6120687265663d22687474703a2f2f736f75726365666f7267652e6e65742f70726f6a6563742f73686f7766696c65732e7068703f67726f75705f69643d323535223e536f75726365466f7267653c2f613e0a3c2f703e0a3c703e0a4654503a0a3c6120687265663d226674703a2f2f6674702e657468657265616c2e636f6d2f7075622f657468657265616c2f223e4d61696e20736974653c2f613e0a3c6120687265663d226674703a2f2f6674702e706c616e65746d6972726f722e636f6d2f7075622f657468657265616c2f223e4175737472616c69613c2f613e0a3c6120687265663d226674703a2f2f6674702e6d6972726f72732e776972657461707065642e6e65742f7075622f73656375726974792f7061636b65742d636170747572652f657468657265616c2f223e4175737472616c69613c2f613e0a3c6120687265663d226674703a2f2f67642e74757769656e2e61632e61742f696e666f7379732f73656375726974792f657468657265616c2f223e417573747269613c2f613e0a3c6120687265663d226674703a2f2f6e65746d6972726f722e6f72672f6674702e657468657265616c2e636f6d2f223e4765726d616e793c2f613e0a3c6120687265663d226674703a2f2f6674702e6179616d7572612e6f72672f7075622f657468657265616c2f223e4a6170616e3c2f613e0a3c6120687265663d226674703a2f2f6674702e617a632e75616d2e6d782f6d6972726f72732f657468657265616c2f223e4d657869636f3c2f613e0a3c6120687265663d226674703a2f2f6674702e73756e65742e73652f7075622f6e6574776f726b2f6d6f6e69746f72696e672f657468657265616c2f223e53776564656e3c2f613e0a3c2f703e0a3c703e0a546865206c617465737420646576656c6f706d656e7420736f75726365732061726520617661696c61626c65207669610a3c6120687265663d22646576656c6f706d656e742e68746d6c23616e6f6e637673223e616e6f6e796d6f7573204356533c2f613e2e0a3c2f703e0a3c68343e57696e646f77732039382f4d452f323030302f58502f3230303320496e7374616c6c6572733c2f68343e0a3c703e0a485454503a0a3c6120687265663d22687474703a2f2f7777772e657468657265616c2e636f6d2f646973747269627574696f6e2f77696e33322f223e4d61696e20736974653c2f613e0a3c6120687265663d22687474703a2f2f657468657265616c2e706c616e65746d6972726f722e636f6d2f646973747269627574696f6e2f77696e33322f223e4175737472616c69613c2f613e0a3c6120687265663d22687474703a2f2f7777772e6d6972726f72732e776972657461707065642e6e65742f73656375726974792f7061636b65742d636170747572652f657468657265616c2f77696e33322f223e4175737472616c69613c2f613e0a3c6120687265663d22687474703a2f2f6e65746d6972726f722e6f72672f6d6972726f722f6674702e657468657265616c2e636f6d2f77696e33322f223e4765726d616e793c2f613e0a3c6120687265663d22687474703a2f2f657468657265616c2e6e65746172632e6a702f646973747269627574696f6e2f77696e33322f223e4a6170616e3c2f613e0a3c6120687265663d22687474703a2f2f657468657265616c2e7365637577697a2e636f6d2f646973747269627574696f6e2f77696e33322f223e4b6f7265613c2f613e0a3c6120687265663d22687474703a2f2f657468657265616c2e306e69306e2e6f72672f646973747269627574696f6e2f77696e33322f223e4d616c61797369613c2f613e0a3c6120687265663d22687474703a2f2f6674702e73756e65742e73652f7075622f6e6574776f726b2f6d6f6e69746f72696e672f657468657265616c2f77696e33322f223e53776564656e3c2f613e0a3c6120687265663d22687474703a2f2f736f75726365666f7267652e6e65742f70726f6a6563742f73686f7766696c65732e7068703f67726f75705f69643d323535223e536f75726365466f7267653c2f613e0a3c2f703e0a3c703e0a4654503a0a3c6120687265663d226674703a2f2f6674702e657468657265616c2e636f6d2f7075622f657468657265616c2f77696e33322f223e4d61696e20736974653c2f613e0a3c6120687265663d226674703a2f2f6674702e706c616e65746d6972726f722e636f6d2f7075622f657468657265616c2f77696e33322f223e4175737472616c69613c2f613e0a3c6120687265663d226674703a2f2f6674702e6d6972726f72732e776972657461707065642e6e65742f7075622f73656375726974792f7061636b65742d636170747572652f657468657265616c2f77696e33322f223e4175737472616c69613c2f613e0a3c6120687265663d226674703a2f2f67642e74757769656e2e61632e61742f696e666f7379732f73656375726974792f657468657265616c2f77696e33322f223e417573747269613c2f613e0a3c6120687265663d226674703a2f2f6e65746d6972726f722e6f72672f6674702e657468657265616c2e636f6d2f77696e33322f223e4765726d616e793c2f613e0a3c6120687265663d226674703a2f2f6674702e6179616d7572612e6f72672f7075622f657468657265616c2f77696e33322f223e4a6170616e3c2f613e0a3c6120687265663d226674703a2f2f6674702e617a632e75616d2e6d782f6d6972726f72732f657468657265616c2f77696e33322f223e4d657869636f3c2f613e0a3c6120687265663d226674703a2f2f6674702e73756e65742e73652f7075622f6e6574776f726b2f6d6f6e69746f72696e672f657468657265616c2f77696e33322f223e53776564656e3c2f613e0a3c2f703e0a3c68343e52656420486174204c696e7578202f204665646f7261205061636b616765733c2f68343e0a3c703e0a485454503a0a3c6120687265663d22687474703a2f2f7777772e657468657265616c2e636f6d2f646973747269627574696f6e2f72706d732f223e4d61696e20736974653c2f613e0a3c6120687265663d22687474703a2f2f657468657265616c2e706c616e65746d6972726f722e636f6d2f646973747269627574696f6e2f72706d732f223e4175737472616c69613c2f613e0a3c6120687265663d22687474703a2f2f7777772e6d6972726f72732e776972657461707065642e6e65742f73656375726974792f7061636b65742d636170747572652f657468657265616c2f72706d732f223e4175737472616c69613c2f613e0a3c6120687265663d22687474703a2f2f6e65746d6972726f722e6f72672f6d6972726f722f6674702e657468657265616c2e636f6d2f72706d732f223e4765726d616e793c2f613e0a3c6120687265663d22687474703a2f2f657468657265616c2e6e65746172632e6a702f646973747269627574696f6e2f72706d732f223e4a6170616e3c2f613e0a3c6120687265663d22687474703a2f2f657468657265616c2e7365637577697a2e636f6d2f646973747269627574696f6e2f72706d732f223e4b6f7265613c2f613e0a3c6120687265663d22687474703a2f2f657468657265616c2e306e69306e2e6f72672f646973747269627574696f6e2f72706d732f223e4d616c61797369613c2f613e0a3c6120687265663d22687474703a2f2f6674702e73756e65742e73652f7075622f6e6574776f726b2f6d6f6e69746f72696e672f657468657265616c2f72706d732f223e53776564656e3c2f613e0a3c2f703e0a3c703e0a4654503a0a3c6120687265663d226674703a2f2f6674702e657468657265616c2e636f6d2f7075622f657468657265616c2f72706d732f223e4d61696e20736974653c2f613e0a3c6120687265663d226674703a2f2f6674702e706c616e65746d6972726f722e636f6d2f7075622f657468657265616c2f72706d732f223e4175737472616c69613c2f613e0a3c6120687265663d226674703a2f2f6674702e6d6972726f72732e776972657461707065642e6e65742f7075622f73656375726974792f7061636b65742d636170747572652f657468657265616c2f72706d732f223e4175737472616c69613c2f613e0a3c6120687265663d226674703a2f2f67642e74757769656e2e61632e61742f696e666f7379732f73656375726974792f657468657265616c2f72706d732f223e417573747269613c2f613e0a3c6120687265663d226674703a2f2f6e65746d6972726f722e6f72672f6674702e657468657265616c2e636f6d2f72706d732f223e4765726d616e793c2f613e0a3c6120687265663d226674703a2f2f6674702e6179616d7572612e6f72672f7075622f657468657265616c2f72706d732f223e4a6170616e3c2f613e0a3c6120687265663d226674703a2f2f6674702e617a632e75616d2e6d782f6d6972726f72732f657468657265616c2f72706d732f223e4d657869636f3c2f613e0a3c6120687265663d226674703a2f2f6674702e73756e65742e73652f7075622f6e6574776f726b2f6d6f6e69746f72696e672f657468657265616c2f72706d732f223e53776564656e3c2f613e0a3c2f703e0a3c68343e536f6c61726973205061636b616765733c2f68343e0a3c703e0a485454503a0a3c6120687265663d22687474703a2f2f7777772e657468657265616c2e636f6d2f646973747269627574696f6e2f736f6c617269732f223e4d61696e20736974653c2f613e0a3c6120687265663d22687474703a2f2f657468657265616c2e706c616e65746d6972726f722e636f6d2f646973747269627574696f6e2f736f6c617269732f223e4175737472616c69613c2f613e0a3c6120687265663d22687474703a2f2f7777772e6d6972726f72732e776972657461707065642e6e65742f73656375726974792f7061636b65742d636170747572652f657468657265616c2f736f6c617269732f223e4175737472616c69613c2f613e0a3c6120687265663d22687474703a2f2f6e65746d6972726f722e6f72672f6d6972726f722f6674702e657468657265616c2e636f6d2f736f6c617269732f223e4765726d616e793c2f613e0a3c6120687265663d22687474703a2f2f657468657265616c2e6e65746172632e6a702f646973747269627574696f6e2f736f6c617269732f223e4a6170616e3c2f613e0a3c6120687265663d22687474703a2f2f657468657265616c2e7365637577697a2e636f6d2f646973747269627574696f6e2f736f6c617269732f223e4b6f7265613c2f613e0a3c6120687265663d22687474703a2f2f657468657265616c2e306e69306e2e6f72672f646973747269627574696f6e2f736f6c617269732f223e4d616c61797369613c2f613e0a3c6120687265663d22687474703a2f2f6674702e73756e65742e73652f7075622f6e6574776f726b2f6d6f6e69746f72696e672f657468657265616c2f736f6c617269732f223e53776564656e3c2f613e0a3c6120687265663d22687474703a2f2f736f75726365666f7267652e6e65742f70726f6a6563742f73686f7766696c65732e7068703f67726f75705f69643d323535223e536f75726365466f7267653c2f613e0a3c2f703e0a3c703e0a4654503a0a3c6120687265663d226674703a2f2f6674702e657468657265616c2e636f6d2f7075622f657468657265616c2f736f6c617269732f223e4d61696e20736974653c2f613e0a3c6120687265663d226674703a2f2f6674702e706c616e65746d6972726f722e636f6d2f7075622f657468657265616c2f736f6c617269732f223e4175737472616c69613c2f613e0a3c6120687265663d226674703a2f2f6674702e6d6972726f72732e776972657461707065642e6e65742f7075622f73656375726974792f7061636b65742d636170747572652f657468657265616c2f736f6c617269732f223e4175737472616c69613c2f613e0a3c6120687265663d226674703a2f2f67642e74757769656e2e61632e61742f696e666f7379732f73656375726974792f657468657265616c2f736f6c617269732f223e417573747269613c2f613e0a3c6120687265663d226674703a2f2f6e65746d6972726f722e6f72672f6674702e657468657265616c2e636f6d2f736f6c617269732f223e4765726d616e793c2f613e0a3c6120687265663d226674703a2f2f6674702e6179616d7572612e6f72672f7075622f657468657265616c2f736f6c617269732f223e4a6170616e3c2f613e0a3c6120687265663d226674703a2f2f6674702e617a632e75616d2e6d782f6d6972726f72732f657468657265616c2f736f6c617269732f223e4d657869636f3c2f613e0a3c6120687265663d226674703a2f2f6674702e73756e65742e73652f7075622f6e6574776f726b2f6d6f6e69746f72696e672f657468657265616c2f736f6c617269732f223e53776564656e3c2f613e0a3c2f703e0a3c2f6469763e0a3c64697620636c6173733d22626c6f636b223e0a20203c683220636c6173733d226865616465726c696e65222069643d226f74686572706c6174223e4f7468657220506c6174666f726d733c2f68323e0a3c703e0a202042696e61727920646973747269627574696f6e7320616e642072656164792d746f2d636f6d70696c65207061636b616765732061726520617661696c61626c6520666f720a20206d6f737420706c6174666f726d732e20506c65617365206e6f7465207468657365207061636b61676573206d617920646570656e64206f6e2065787465726e616c0a20206c696272617269657320696e636c7564696e6720474c69622f47544b2b2c206c6962706361702c204e65742d534e4d502c20504352452c20616e6420474e552041444e532e0a2020596f75206d6179206861766520746f20646f776e6c6f616420616e6420696e7374616c6c207468656d206265666f726520696e7374616c6c696e6720457468657265616c2e0a3c2f703e0a3c7461626c652063656c6c73706163696e673d2231222063656c6c70616464696e673d22322220626f726465723d2230222073756d6d6172793d22223e0a3c7472206267636f6c6f723d2223636363633939223e0a20203c74683e506c6174666f726d3c2f74683e0a20203c74683e4c6f636174696f6e2873293c2f74683e0a3c2f74723e0a3c74723e0a20203c74642076616c69676e3d22746f70223e4170706c6520436f6d70757465723a3c62723e4d6163204f5320583c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f66696e6b2e736f75726365666f7267652e6e65742f7064622f7061636b6167652e7068702f657468657265616c223e46696e6b2050726f6a6563743c2f613e0a202020203c6120687265663d22687474703a2f2f64617277696e706f7274732e6f70656e64617277696e2e6f7267223e44617277696e506f7274733c2f613e0a3c2f74643e0a3c2f74723e0a3c747220636c6173733d226576656e223e0a20203c74642076616c69676e3d22746f70223e4265202850616c6d3f293a3c62723e42654f533c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f7777772e6265626974732e636f6d2f6170702f32393739223e4265426974733c2f613e0a3c2f74643e0a3c2f74723e0a3c74723e0a20203c74642076616c69676e3d22746f70223e44656269616e3a3c62723e44656269616e20474e552f4c696e75783c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f7061636b616765732e64656269616e2e6f72672f737461626c652f6e65742f657468657265616c223e737461626c653c2f613e2c0a202020203c6120687265663d22687474703a2f2f7061636b616765732e64656269616e2e6f72672f74657374696e672f6e65742f657468657265616c223e74657374696e673c2f613e2c0a202020203c6120687265663d22687474703a2f2f7061636b616765732e64656269616e2e6f72672f756e737461626c652f6e65742f657468657265616c223e756e737461626c653c2f613e0a3c2f74643e0a3c2f74723e0a3c747220636c6173733d226576656e223e0a20203c74642076616c69676e3d22746f70223e54686520467265654253442050726f6a6563743a3c62723e467265654253443c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f7777772e667265656273642e6f72672f6367692f706f7274732e6367693f71756572793d657468657265616c2673747970653d616c6c223e706f7274733c2f613e0a3c2f74643e0a3c2f74723e0a3c74723e0a20203c74642076616c69676e3d22746f70223e47656e746f6f20546563686e6f6c6f676965733a3c62723e47656e746f6f204c696e75783c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f7777772e67656e746f6f2e6f72672f7061636b616765732f6e65742d616e616c797a65722f657468657265616c2e68746d6c223e706f72746167653c2f613e0a3c2f74643e0a3c2f74723e0a3c747220636c6173733d226576656e223e0a20203c74642076616c69676e3d22746f70223e48503a3c62723e547275363420556e69783c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d226674703a2f2f6674702e7468657772697474656e776f72642e636f6d2f7061636b616765732f62792d6e616d652f657468657265616c2d302e392e31362f223e546865205772697474656e20576f72642028342e30642c20352e31293c2f613e3c73757065723e3c736d616c6c3e313c2f736d616c6c3e3c2f73757065723e0a3c2f74643e0a3c2f74723e0a3c74723e0a20203c74642076616c69676e3d22746f70223e48503a3c62723e48502d55583c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f687075782e636f6e6e6563742e6f72672e756b2f687070642f687075782f47746b2f4170706c69636174696f6e732f223e554b3c2f613e2c0a202020203c6120687265663d22687474703a2f2f687075782e61736b6e65742e64652f687070642f687075782f47746b2f4170706c69636174696f6e732f223e4765726d616e793c2f613e2c0a202020203c6120687265663d22687474703a2f2f687075782e746e2e747564656c66742e6e6c2f687070642f687075782f47746b2f4170706c69636174696f6e732f223e4e65746865726c616e64733c2f613e2c0a202020203c6120687265663d22687474703a2f2f687075782e63732e757461682e6564752f687070642f687075782f47746b2f4170706c69636174696f6e732f223e55533c2f613e2c0a202020203c6120687265663d22687474703a2f2f687075782e65652e75616c62657274612e63612f687070642f687075782f47746b2f4170706c69636174696f6e732f223e43616e6164613c2f613e2c0a202020203c6120687265663d22687474703a2f2f687075782e7065746563682e61632e7a612f2f687070642f687075782f47746b2f4170706c69636174696f6e732f223e536f757468266e6273703b4166726963613c2f613e0a202020203c62723e286d6f7265206d6972726f727320617265206c6973746564206f6e20656163682073697465277320686f6d652070616765292c3c62723e0a202020203c6120687265663d226674703a2f2f6674702e7468657772697474656e776f72642e636f6d2f7061636b616765732f62792d6e616d652f657468657265616c2d302e392e31362f223e546865205772697474656e20576f7264202831302e32302c2031312e30302c2031312e3131293c2f613e3c73757065723e3c736d616c6c3e313c2f736d616c6c3e3c2f73757065723e0a3c2f74643e0a3c2f74723e0a3c747220636c6173733d226576656e223e0a20203c74642076616c69676e3d22746f70223e49424d3a3c62723e4149583c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f7777772e62756c6c66726565776172652e636f6d2f223e42756c6c20617263686976653c2f613e3c62723e0a202020203c6120687265663d22687474703a2f2f6674702e756e697669652e61632e61742f6169782f223e5669656e6e6120556e6976657273697479206d6972726f723c2f613e3c62723e0a202020203c6120687265663d22687474703a2f2f6169787064736c69622e736561732e75636c612e6564752f62756c6c2e68746d6c223e55434c41206d6972726f723c2f613e0a3c2f74643e0a3c2f74723e0a20203c212d2d204173686c65792047204368616c6f6e6572203c6373757766205b61745d206463732e7761727769636b2e61632e756b3e202d2d3e0a3c74723e0a20203c74642076616c69676e3d22746f70223e49424d3a3c62723e532f333930204c696e757820285265642048617420372e32293c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f7777772e6463732e7761727769636b2e61632e756b2f7e63737577662f52504d732f223e4173686c6579204368616c6f6e65723c2f613e3c62723e0a3c2f74643e0a3c2f74723e0a3c747220636c6173733d226576656e223e0a20203c74642076616c69676e3d22746f70223e4d616e6472616b65536f66743a3c62723e4d616e6472616b65204c696e75783c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f7777772e6c696e75782d6d616e6472616b652e636f6d2f656e2f636f6f6b6572646576656c2e70687033223e436f6f6b65723c2f613e0a2020202028696e2074686520636f6e747269622073656374696f6e290a3c2f74643e0a3c2f74723e0a3c74723e0a20203c74642076616c69676e3d22746f70223e4d6963726f736f66743a3c62723e57696e646f77732028496e74656c2c2033322d626974293c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f7777772e657468657265616c2e636f6d2f646973747269627574696f6e2f77696e3332223e6c6f63616c20617263686976653c2f613e3c62723e0a202020203c6120687265663d22687474703a2f2f7777772e6f70656e787472612e636f6d2f70726f64756374732f657468657265616c5f787472612e68746d223e4f50454e45585452413c2f613e0a3c2f74643e0a3c2f74723e0a3c747220636c6173733d226576656e223e0a20203c74642076616c69676e3d22746f70223e4e657442534420466f756e646174696f6e3a3c62723e4e65744253443c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d226674703a2f2f6674702e6e65746273642e6f72672f7075622f4e65744253442f7061636b616765732f706b677372632f6e65742f657468657265616c2f524541444d452e68746d6c223e7061636b616765733c2f613e0a3c2f74643e0a3c2f74723e0a3c74723e0a20203c74642076616c69676e3d22746f70223e4f70656e4253443a3c62723e4f70656e4253443c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f7777772e6f70656e6273642e6f72672f6367692d62696e2f6376737765622f706f7274732f6e65742f657468657265616c2f223e706f7274733c2f613e0a3c2f74643e0a3c2f74723e0a3c747220636c6173733d226576656e223e0a20203c74642076616c69676e3d22746f70223e504c44205465616d3a3c62723e504c44204c696e75783c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d226674703a2f2f6674702e706c642d6c696e75782e6f72672f64697374732f7261223e46545020736974653c2f613e0a3c2f74643e0a3c2f74723e0a3c74723e0a20203c74642076616c69676e3d22746f70223e526564204861743a3c62723e52656420486174204c696e75783c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f72706d66696e642e6e65742f6c696e75782f52504d2f4542794e616d652e68746d6c223e52504d46696e643c2f613e2028726571756972657320676c696263293c62723e0a202020203c6120687265663d226674703a2f2f6674702e66616c7365686f70652e636f6d2f686f6d652f676f6d657a2f657468657265616c2f223e48656e726920476f6d657a3c2f613e3c62723e0a202020203c6120687265663d226674703a2f2f6674702e7468657772697474656e776f72642e636f6d2f7061636b616765732f62792d6e616d652f657468657265616c2d302e392e31362f223e546865205772697474656e20576f72642028372e31293c2f613e3c73757065723e3c736d616c6c3e313c2f736d616c6c3e3c2f73757065723e3c62723e0a202020203c6120687265663d226674703a2f2f6674702e657468657265616c2e636f6d2f7075622f657468657265616c2f72706d732f223e6c6f63616c20617263686976653c2f613e3c62723e0a3c2f74643e0a3c2f74723e0a3c747220636c6173733d226576656e223e0a20203c74642076616c69676e3d22746f70223e524f434b204c696e75783a3c62723e524f434b204c696e75783c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f7777772e726f636b6c696e75782e6f72672f736f75726365732f7061636b6167652f7473612f657468657265616c2f223e7061636b6167653c2f613e3c62723e0a3c2f74643e0a3c2f74723e0a3c74723e0a20203c74642076616c69676e3d22746f70223e53434f2028666f726d65726c792043616c64657261293a3c62723e556e6978576172652f4f70656e556e69783c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f7777772e73636f2e636f6d2f736b756e6b776172652f223e536b756e6b776172653c2f613e3a0a202020203c6120687265663d226674703a2f2f667470322e63616c646572612e636f6d2f7075622f736b756e6b776172652f7577372f6e65742f657468657265616c2f223e556e69785761726520373c2f613e0a202020203c6120687265663d226674703a2f2f667470322e63616c646572612e636f6d2f7075622f736b756e6b776172652f6f75382f6e65742f657468657265616c2f223e4f70656e20554e495820383c2f613e0a3c2f74643e0a3c2f74723e0a3c747220636c6173733d226576656e223e0a20203c74642076616c69676e3d22746f70223e5347493a3c62723e497269783c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d226674703a2f2f6674702e7468657772697474656e776f72642e636f6d2f7061636b616765732f62792d6e616d652f657468657265616c2d302e392e31362f223e546865205772697474656e20576f72642028362e35293c2f613e3c73757065723e3c736d616c6c3e313c2f736d616c6c3e3c2f73757065723e3c62723e0a202020203c6120687265663d22687474703a2f2f66726565776172652e7367692e636f6d2f696e6465782d62792d616c7068612e68746d6c223e5347492046726565776172653c2f613e0a3c2f74643e0a3c2f74723e0a3c74723e0a20203c74642076616c69676e3d22746f70223e536c61636b77617265204c696e75783a3c62723e536c61636b77617265204c696e75783c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f7777772e6c696e75787061636b616765732e6e65742f7365617263685f766965772e7068703f62793d6e616d65266e616d653d657468657265616c267665723d223e4c696e7578205061636b616765733c2f613e0a3c2f74643e0a3c2f74723e0a3c747220636c6173733d226576656e223e0a20203c74642076616c69676e3d22746f70223e53756e204d6963726f73797374656d733a3c62723e536f6c617269732f496e74656c3c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f7777772e73756e2e636f6d2f736f6c617269732f66726565776172652e68746d6c223e536f6c617269732030312f3031207570646174653c2f613e2028756e737570706f72746564290a3c2f74643e0a3c2f74723e0a3c74723e0a20203c74642076616c69676e3d22746f70223e53756e204d6963726f73797374656d733a3c62723e536f6c617269732f53504152433c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d22687474703a2f2f7777772e657468657265616c2e636f6d2f646973747269627574696f6e2f736f6c617269732f223e6c6f63616c20617263686976652028382c2039293c2f613e3c62723e0a202020203c6120687265663d226674703a2f2f6674702e7468657772697474656e776f72642e636f6d2f7061636b616765732f62792d6e616d652f657468657265616c2d302e392e31362f223e546865205772697474656e20576f72642028322e352e31202d2039293c2f613e3c73757065723e3c736d616c6c3e313c2f736d616c6c3e3c2f73757065723e3c62723e0a202020203c6120687265663d22687474703a2f2f7777772e73756e66726565776172652e636f6d2f223e53756e66726565776172652e636f6d2028372c2038293c2f613e3c62723e0a202020203c6120687265663d22687474703a2f2f7777772e73756e2e636f6d2f736f6c617269732f66726565776172652f696e6465782e68746d6c223e536f6c61726973203820616e64203920436f6d70616e696f6e20536f667477617265204344733c2f613e2028756e737570706f72746564290a3c2f74643e0a3c2f74723e0a3c747220636c6173733d226576656e223e0a20203c74642076616c69676e3d22746f70223e537553453a3c62723e53755345204c696e75783c2f74643e0a20203c74642076616c69676e3d22746f70223e0a202020203c6120687265663d226674703a2f2f6674702e737573652e636f6d2f7075622f737573652f223e537553452046545020736974653c2f613e2e0a202020203c6120687265663d22687474703a2f2f7777772e737573652e636f6d2f75732f707269766174652f646f776e6c6f61642f6674702f696e745f6d6972726f72732e68746d6c223e4d6972726f72733c2f613e2061726520616c736f20617661696c61626c652e0a3c2f74643e0a3c2f74723e0a3c2f7461626c653e0a3c703e0a2020496620796f75206b6e6f77206f6620616e792062696e61727920646973747269627574696f6e206e6f74206c697374656420686572652c20706c656173652073656e64206d61696c0a2020746f0a20203c6120687265663d226d61696c746f3a657468657265616c2d7765625b41545d657468657265616c2e636f6d223e657468657265616c2d7765625b41545d657468657265616c2e636f6d3c2f613e0a2e0a3c2f703e0a3c7020636c6173733d22666f6f746e6f7465223e0a20205b315d204561636820457468657265616c207061636b6167652070726f64756365642062790a20203c6120687265663d22687474703a2f2f7777772e7468657772697474656e776f72642e636f6d223e546865205772697474656e20576f72643c2f613e20646570656e6473206f6e207468650a20203c6120687265663d226674703a2f2f6674702e7468657772697474656e776f72642e636f6d2f7061636b616765732f62792d6e616d652f7a6c69622d312e312e342f223e7a6c69623c2f613e2c0a20203c6120687265663d226674703a2f2f6674702e7468657772697474656e776f72642e636f6d2f7061636b616765732f62792d6e616d652f676c69622d312e322e31302f223e476c69623c2f613e2c0a20203c6120687265663d226674703a2f2f6674702e7468657772697474656e776f72642e636f6d2f7061636b616765732f62792d6e616d652f67746b2b2d312e322e31302f223e47544b2b3c2f613e2c0a20203c6120687265663d226674703a2f2f6674702e7468657772697474656e776f72642e636f6d2f7061636b616765732f62792d6e616d652f7065726c2d352e362e312f223e5065726c3c2f613e2c20616e640a20203c6120687265663d226674703a2f2f6674702e7468657772697474656e776f72642e636f6d2f7061636b616765732f62792d6e616d652f6e65742d736e6d702d352e302e392f223e4e65742d534e4d503c2f613e0a20207061636b616765732e0a2020506c6561736520726566657220746f20546865205772697474656e20576f726427730a20203c6120687265663d226674703a2f2f6674702e7468657772697474656e776f72642e636f6d2f7061636b616765732f494e5354414c4c2e706466223e646f63756d656e746174696f6e3c2f613e0a2020666f7220696e7374616c6c6174696f6e20696e737472756374696f6e732e0a2020506c6561736520646f206e6f742063616c6c20546865205772697474656e20576f726420666f7220737570706f72742e20456d61696c0a20203c6120687265663d226d61696c746f3a667265652d737570706f72745b41545d7468657772697474656e776f72642e636f6d223e667265652d737570706f72745b41545d7468657772697474656e776f72642e636f6d3c2f613e0a202077697468207175657374696f6e732e0a3c2f703e0a3c2f6469763e0a3c64697620636c6173733d22626c6f636b223e0a20203c683220636c6173733d226865616465726c696e65222069643d226f74686572646f776e223e4f7468657220446f776e6c6f6164733c2f68323e0a3c68343e53616d706c652043617074757265733c2f68343e0a3c703e0a202041206d656e616765726965206f6620636170747572652066696c657320697320617661696c61626c65206f6e206f75720a20203c6120687265663d222e2e2f73616d706c652f223e73616d706c652063617074757265733c2f613e20706167652e0a3c2f703e0a3c68343e446f63756d656e746174696f6e3c2f68343e0a3c703e0a202041205044462076657273696f6e206f662074686520457468657265616c2055736572277320477569646520697320617661696c61626c6520696e207468650a20203c6120687265663d222e2e2f646f63732f237265736f7572636573223e646f63756d656e746174696f6e3c2f613e20706167652e0a3c2f6469763e0a3c64697620636c6173733d22626c6f636b223e0a20203c683220636c6173733d226865616465726c696e65222069643d226c6567616c223e4c6567616c204e6f74696365733c2f68323e0a3c703e0a414958206973206120726567697374657265642074726164656d61726b206f6620496e7465726e6174696f6e616c20427573696e657373204d616368696e65732c20496e632e0a5472753634206973206120726567697374657265642074726164656d61726b206f6620436f6d70617120436f6d707574657220436f72706f726174696f6e2e0a44656269616e206973206120726567697374657265642074726164656d61726b206f6620536f66747761726520496e20546865205075626c696320496e7465726573742c20496e632e0a46726565425344206973206120726567697374657265642074726164656d61726b206f662057616c6e757420437265656b204344524f4d2c20496e632e0a48502d5558206973206120726567697374657265642074726164656d61726b206f66204865776c6574742d5061636b61726420436f6d70616e792e0a49726978206973206120726567697374657265642074726164656d61726b206f662053696c69636f6e2047726170686963732c20496e632e0a4c696e757850504320697320612074726164656d61726b206f66204a65666620436172722e0a4d6163204f53206973206120726567697374657265642074726164656d61726b206f66204170706c6520436f6d70757465722c20496e632e0a4e6574425344206973206120726567697374657265642074726164656d61726b206f6620746865204e657442534420466f756e646174696f6e2e0a52656420486174206973206120726567697374657265642074726164656d61726b206f6620526564204861742c20496e632e0a4c696e7578206973206120726567697374657265642074726164656d61726b206f66204c696e757320546f7276616c64732e0a53434f20616e6420556e6978776172652061726520726567697374657265642074726164656d61726b73206f662053616e7461204372757a204f7065726174696f6e2c20496e632e0a536c61636b77617265206973206120726567697374657265642074726164656d61726b206f66205061747269636b20566f6c6b657264696e672e0a536f6c61726973206973206120726567697374657265642074726164656d61726b206f662053756e204d6963726f73797374656d732c20496e632e0a53755345206973206120726567697374657265642074726164656d61726b206f6620537553452041472e0a4d6963726f736f66742c2057696e646f77732c2057696e646f77732039352c2057696e646f77732039382c2057696e646f7773204d452c2057696e646f7773204e542c0a57696e646f777320323030302c20616e642057696e646f77732058502061726520726567697374657265642074726164656d61726b73206f66204d6963726f736f66742c0a496e632e0a416c6c206f746865722074726164656d61726b73206f6e20746869732073697465206172652070726f7065727479206f662074686569722072657370656374697665206f776e6572732e0a3c2f703e0a3c2f6469763e0a3c64697620636c6173733d22666f6f746572223e0a2020506c656173652073656e6420737570706f7274207175657374696f6e732061626f757420457468657265616c20746f207468650a20203c6120687265663d226d61696c746f3a657468657265616c2d75736572735b41545d657468657265616c2e636f6d223e657468657265616c2d75736572735b41545d657468657265616c2e636f6d3c2f613e0a202020206d61696c696e67206c6973742e3c62723e0a2020466f7220636f7272656374696f6e732f6164646974696f6e732f73756767657374696f6e7320666f7220746869732077656220706167652028616e64203c623e6e6f743c2f623e20457468657265616c0a2020737570706f7274207175657374696f6e73292c20706c656173652073656e6420656d61696c20746f0a20203c6120687265663d226d61696c746f3a657468657265616c2d7765625b41545d657468657265616c2e636f6d223e657468657265616c2d7765625b41545d657468657265616c2e636f6d3c2f613e0a2e3c62723e0a20204c617374206d6f6469666965643a205475652c20417072696c20323020323030342e0a3c2f6469763e0a3c2f626f64793e0a3c2f68746d6c3e0a
+
