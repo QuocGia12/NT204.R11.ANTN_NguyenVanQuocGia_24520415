@@ -25,15 +25,18 @@ DNS_TYPES = {
 DNS_CLASSES = {1: "IN", 3: "CH", 4: "HS"}
 
 class PacketParser: 
-    def parse(self, packet): 
+    def parse(self, packet, flow_id): 
         # test 
         parsed_packet = self.base_parsed_packet(packet)
 
         # process packet 
         parsed_packet["packet"] = parse_packet(packet)
+        parsed_packet["packet"]["flow_id"] = flow_id 
 
         # process application if applicable
         parsed_packet["application"] = parse_application(packet)
+        if parsed_packet["application"] is not None: 
+            parsed_packet["application"]["flow_id"] = flow_id 
 
 
         return parsed_packet
