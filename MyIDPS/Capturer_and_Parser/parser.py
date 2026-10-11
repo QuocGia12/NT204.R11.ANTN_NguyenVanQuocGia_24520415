@@ -1,5 +1,6 @@
 import pyshark
 import json
+import argparse 
 
 NON_APPLICATION_LAYERS = {
     "eth", "sll", "sll2", "ip", "ipv6",
@@ -8,17 +9,20 @@ NON_APPLICATION_LAYERS = {
 }
 
 DNS_TYPES = {
-    "1": "A",
-    "2": "NS",
-    "5": "CNAME",
-    "6": "SOA",
-    "12": "PTR",
-    "15": "MX",
-    "16": "TXT",
-    "28": "AAAA",
-    "33": "SRV",
-    "255": "ANY",
+    1: "A",
+    2: "NS",
+    5: "CNAME",
+    6: "SOA",
+    12: "PTR",
+    15: "MX",
+    16: "TXT",
+    28: "AAAA",
+    33: "SRV",
+    41: "OPT",
+    255: "ANY",
 }
+
+DNS_CLASSES = {1: "IN", 3: "CH", 4: "HS"}
 
 class PacketParser: 
     def parse(self, packet): 
@@ -244,62 +248,205 @@ def parse_application(packet):
         return result
 
     def parse_dns(dns_layer):
-        def get_field(name):
-            return getattr(dns_layer, name, None)
+        """Parse một DNS layer của PyShark thành các RR theo đúng section.
 
-        def get_all_fields(name):
-            field = dns_layer.get_field(name)
+        Yêu cầu PyShark ở chế độ XML mặc định: mỗi LayerField có show, pos, size.
+        Khi số trường chung không khớp số RR trong header, hàm ghi parse_errors
+        và không tự ghép các giá trị có thể thuộc nhầm record.
+        """
 
-            if field is None:
-                return []
+        def all_fields(name):
+            container = dns_layer.get_field(name)
+            return list(container.all_fields) if container is not None else []
 
-            return [item.show for item in field.all_fields]
+        def first_value(name):
+            values = all_fields(name)
+            return values[0].show if values else None
 
-        # Common DNS fields
+        def as_int(value):
+            if value is None:
+                return None
+            try:
+                return int(str(value))
+            except ValueError:
+                try:
+                    return int(str(value), 0)
+                except ValueError:
+                    return None
+
+        def type_name(code):
+            return DNS_TYPES.get(code, f"TYPE{code}")
+
+        def class_name(code):
+            return DNS_CLASSES.get(code, f"CLASS{code}")
+
+        def one(fields, name):
+            values = fields.get(name, [])
+            return values[0] if values else None
+
+        def parse_rdata(rr_type, fields):
+            """Đặt tên dễ đọc cho RDATA thông dụng; giữ raw_fields cho loại khác."""
+            if rr_type in ("A", "AAAA"):
+                return {"address": one(fields, rr_type.lower())}
+            if rr_type == "CNAME":
+                return {"target": one(fields, "cname")}
+            if rr_type == "NS":
+                return {"nameserver": one(fields, "ns")}
+            if rr_type == "PTR":
+                return {"target": one(fields, "ptr_domain_name")}
+            if rr_type == "MX":
+                return {
+                    "preference": as_int(one(fields, "mx_preference")),
+                    "exchange": one(fields, "mx_mail_exchange"),
+                }
+            if rr_type == "TXT":
+                return {"strings": fields.get("txt", [])}
+            if rr_type == "SRV":
+                return {
+                    "priority": as_int(one(fields, "srv_priority")),
+                    "weight": as_int(one(fields, "srv_weight")),
+                    "port": as_int(one(fields, "srv_port")),
+                    "target": one(fields, "srv_target"),
+                }
+            if rr_type == "SOA":
+                return {
+                    "mname": one(fields, "soa_mname"),
+                    "rname": one(fields, "soa_rname"),
+                    "serial": as_int(one(fields, "soa_serial_number")),
+                    "refresh": as_int(one(fields, "soa_refresh_interval")),
+                    "retry": as_int(one(fields, "soa_retry_interval")),
+                    "expire": as_int(one(fields, "soa_expire_limit")),
+                    "minimum": as_int(one(fields, "soa_minimum_ttl")),
+                }
+            return fields.copy()
+
+        # parse headers 
+        question_count = as_int(first_value("count_queries")) or 0
+        answer_count = as_int(first_value("count_answers")) or 0
+        authority_count = as_int(first_value("count_auth_rr")) or 0
+        additional_count = as_int(first_value("count_add_rr")) or 0
+        response_flag = first_value("flags_response")
+
         result = {
             "protocol": "DNS",
-            "transaction_id": get_field("id"),
-            "flags": get_field("flags"),
-            "opcode": get_field("flags_opcode"),
-            "response_code": get_field("flags_rcode"),
-            "question_count": get_field("count_queries"),
-            "answer_count": get_field("count_answers"),
-            "authority_count": get_field("count_auth_rr"),
-            "additional_count": get_field("count_add_rr"),
+            "transaction_id": first_value("id"),
+            "flags": first_value("flags"),
+            "opcode": as_int(first_value("flags_opcode")),
+            "response_code": as_int(first_value("flags_rcode")),
+            "question_count": question_count,
+            "answer_count": answer_count,
+            "authority_count": authority_count,
+            "additional_count": additional_count,
+            "type": {"0": "query", "1": "response"}.get(response_flag, "unknown"),
+            "query": None,
+            "questions": [],
+            "answers": [],
+            "authorities": [],
+            "additionals": [],
+            "parse_errors": [],
         }
 
-        # DNS query or response
-        is_response = get_field("flags_response")
-
-        if is_response == "0":
-            result["type"] = "query"
-        elif is_response == "1":
-            result["type"] = "response"
+        # parse dns question
+        question_fields = {  
+            "name": all_fields("qry_name"),
+            "type": all_fields("qry_type"),
+            "class": all_fields("qry_class"),
+        }
+        
+        # kiểm tra có bao nhiêu question, các value thu được có đủ số lượng với question count không 
+        question_lengths = {key: len(value) for key, value in question_fields.items()}
+        if any(length != question_count for length in question_lengths.values()):
+            result["parse_errors"].append(
+                f"question count {question_count} differs from fields {question_lengths}"
+            )
         else:
-            result["type"] = "unknown"
+            for index in range(question_count): # duyệt từng question và parse 
+                code = as_int(question_fields["type"][index].show)
+                class_code = as_int(question_fields["class"][index].show)
+                result["questions"].append({
+                    "name": question_fields["name"][index].show,
+                    "type": type_name(code),
+                    "type_code": code,
+                    "class": class_name(class_code),
+                    "class_code": class_code,
+                })
+            if result["questions"]:
+                result["query"] = result["questions"][0] # query: question đầu tiên 
 
-        # DNS question
-        result["query"] = {
-            "name": get_field("qry_name"),
-            "type": get_field("qry_type"),
-            "type_string": DNS_TYPES.get(get_field("qry_type"), f"TYPE{get_field('qry_type')}"),
-            "class": get_field("qry_class"),
+
+        total_records = answer_count + authority_count + additional_count
+        common = {
+            "name": all_fields("resp_name"),
+            "type": all_fields("resp_type"),
+            "class": all_fields("resp_class"),
+            "ttl": all_fields("resp_ttl"),
+            "length": all_fields("resp_len"),
         }
+        common_lengths = {key: len(value) for key, value in common.items()}
+        if any(length != total_records for length in common_lengths.values()):
+            result["parse_errors"].append(
+                f"RR count {total_records} differs from fields {common_lengths}"
+            )
+            return result
 
-        # DNS response records
-        result["answers"] = {
-            "a": get_all_fields("a"),
-            "aaaa": get_all_fields("aaaa"),
-            "cname": get_all_fields("cname"),
-            "ns": get_all_fields("ns"),
-            "ptr": get_all_fields("ptr_domain_name"),
-            "mx": get_all_fields("mx_mail_exchange"),
-            "txt": get_all_fields("txt"),
-            "ttl": get_all_fields("resp_ttl"),
-        }
+        # Giữ vị trí của tất cả trường để gắn chúng với RDATA của đúng RR.
+        rdata_fields = []
+        common_names = {"resp_name", "resp_type", "resp_class", "resp_ttl", "resp_len"}
+        for field_name in dns_layer.field_names:
+            if not field_name or field_name in common_names:
+                continue
+            for field in all_fields(field_name):
+                position = as_int(getattr(field, "pos", None))
+                if position is not None:
+                    rdata_fields.append((position, field_name, field.show))
 
+        records = []
+        for index in range(total_records):
+            type_code = as_int(common["type"][index].show)
+            class_code = as_int(common["class"][index].show)
+            ttl = as_int(common["ttl"][index].show)
+            length = as_int(common["length"][index].show)
+            length_field = common["length"][index]
+            length_pos = as_int(getattr(length_field, "pos", None))
+            length_size = as_int(getattr(length_field, "size", None))
+
+            if None in (length, length_pos, length_size):
+                result["parse_errors"].append(f"RR {index}: missing RDATA boundary")
+                return result
+
+            rdata_start = length_pos + length_size
+            rdata_end = rdata_start + length
+            fields = {}
+            for position, name, value in rdata_fields:
+                if rdata_start <= position < rdata_end:
+                    fields.setdefault(name, []).append(value)
+
+            rr_type = type_name(type_code)
+            record = {
+                "name": common["name"][index].show,
+                "type": rr_type,
+                "type_code": type_code,
+                "class": class_name(class_code),
+                "class_code": class_code,
+                "ttl": ttl,
+                "rdata_length": length,
+                "rdata": parse_rdata(rr_type, fields),
+                "raw_fields": fields,
+            }
+
+            # OPT là pseudo-RR: CLASS chứa UDP payload size, TTL chứa EDNS flags.
+            if type_code == 41:
+                record["udp_payload_size"] = class_code
+                record["edns_ttl_raw"] = ttl
+                record["class"] = None
+                record["ttl"] = None
+
+            records.append(record)
+
+        result["answers"] = records[:answer_count]
+        result["authorities"] = records[answer_count:answer_count + authority_count]
+        result["additionals"] = records[answer_count + authority_count:]
         return result
-
 
 
     def parse_smtp(smtp_layer):
