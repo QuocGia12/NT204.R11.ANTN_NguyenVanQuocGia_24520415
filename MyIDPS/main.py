@@ -37,23 +37,31 @@ def build_CLI() -> argparse.ArgumentParser:
         default=Path("./application_result.json"),
         help="Identify output file for application result, the default is application_result.json"
     )
+    parser.add_argument(
+        "--output_flow",
+        type=Path,
+        default=Path("./flow_result.json"),
+        help="Identify output file for flow table result, the default is flow_result.json"
+    )
     return parser 
 
 def main(): 
     CLI = build_CLI()
     args = CLI.parse_args()
-    with open(str(args.output_packet), "w") as output_packet, open(str(args.output_application), "w") as output_application: 
+    with open(str(args.output_packet), "w") as output_packet, open(str(args.output_application), "w") as output_application, open(str(args.output_flow), "w") as output_flow: 
         if (args.interface): 
             process_interface(
                 interface=args.interface, 
                 output_packet=output_packet,
-                output_application=output_application
+                output_application=output_application,
+                output_flow=output_flow
             )
         else:
             process_pcap(
                 pcap_file=args.pcap, 
                 output_packet=output_packet,
-                output_application=output_application
+                output_application=output_application, 
+                output_flow=output_flow
             )
 
 
