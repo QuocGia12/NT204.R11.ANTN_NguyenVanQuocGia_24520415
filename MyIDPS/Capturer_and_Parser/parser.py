@@ -4,6 +4,12 @@ import argparse
 from html import unescape
 from urllib.parse import unquote, unquote_plus
 
+
+import base64
+import binascii
+import quopri
+from pathlib import Path
+
 NON_APPLICATION_LAYERS = {
     "eth", "sll", "sll2", "ip", "ipv6",
     "tcp", "udp", "icmp", "icmpv6",
@@ -478,7 +484,59 @@ def parse_application(packet):
         return result
 
 
-    def parse_smtp(smtp_layer):
+    def parse_imf(imf_layer, encoded_body=None):
+        fields = {}
+        for name in imf_layer.field_names:
+            field = imf_layer.get_field(name)
+            if field is None:
+                continue
+            values = []
+            for item in field.all_fields:
+                if item.show not in (None, ""):
+                    value = item.show
+                elif item.raw_value:
+                    value = {"raw_hex": item.raw_value}
+                elif item.show is not None:
+                    value = item.show
+                else:
+                    continue
+                values.append(value)
+            if values:
+                # Luôn dùng list cho dữ liệu không tên; các named field đơn có scalar.
+                fields[name or "data"] = (
+                    values[0] if name and len(values) == 1 else values
+                )
+
+        encoding = fields.get("content_transfer_encoding")
+        if encoding is None:
+            encoding = fields.get("mime_multipart_header_content_transfer_encoding")
+        if isinstance(encoding, list) and len(encoding) == 1:
+            encoding = encoding[0]
+        if isinstance(encoding, str):
+            encoding = encoding.strip().lower()
+            data_field = imf_layer.get_field("")
+            if encoding in {"base64", "quoted-printable"} and (
+                encoded_body is not None or data_field is not None
+            ):
+                # Lấy byte gốc của data để giữ đúng CRLF, thay vì chuỗi show đã escape.
+                items = data_field.all_fields if data_field is not None else []
+                if encoded_body is not None or all(item.raw_value is not None for item in items):
+                    try:
+                        data = encoded_body if encoded_body is not None else b"".join(
+                            bytes.fromhex(item.raw_value) for item in items
+                        )
+                        if encoding == "base64":
+                            decoded = base64.b64decode(b"".join(data.split()), validate=True)
+                        else:
+                            decoded = quopri.decodestring(data)
+                        fields["decoded_data"] = decoded.decode("utf-8", errors="replace")
+                    except (ValueError, binascii.Error):
+                        pass  # Dữ liệu hỏng: giữ data gốc, không tạo decoded_data.
+        return {"protocol": "IMF", "fields": fields}
+
+
+    def parse_smtp(smtp_layer, packet):
+
         def get_field(name):
             return smtp_layer.get_field_value(name)
 
@@ -508,9 +566,29 @@ def parse_application(packet):
         }
 
 
-        # End of message
+        # EOM là field không có giá trị: kiểm tra sự tồn tại của tên field.
         if "eom" in smtp_layer.field_names:
-            result["type"] = "end_of_message"
+            imf_layer = next(
+                (layer for layer in reversed(packet.layers)
+                if layer.layer_name.lower() == "imf"),
+                None,
+            )
+            result["tcp_stream"] = str(packet.tcp.stream)
+            if imf_layer is None:
+                result["type"] = "end_of_message"
+                result["parse_error"] = "SMTP EOM xuất hiện nhưng packet không có layer IMF"
+            else:
+                result["type"] = "data"
+                result["imf"] = parse_imf(imf_layer)
+
+            # Metadata do Wireshark cung cấp, không tính lại bằng buffer TCP.
+            for name in ("data_fragment_count", "data_reassembled_length"):
+                value = get_field(name)
+                if value is not None:
+                    result[name] = value
+            fragments = get_all_fields("data_fragment")
+            if fragments:
+                result["data_fragments"] = fragments
             return result
 
         # AUTH
@@ -586,13 +664,8 @@ def parse_application(packet):
         field = smtp_layer.get_field("")
 
         if field is not None:
-            result["type"] = "data"
-
-            result["message"] = "".join(
-                item.show
-                for item in field.all_fields
-                if item.show is not None
-            )
+            # Nội dung email sẽ được ghi một lần từ IMF ở packet có EOM.
+            return None
 
         # Reassembly information
         data_fragment_count = get_field("data_fragment_count")
@@ -742,7 +815,7 @@ def parse_application(packet):
         result["application"] = parse_dns(app_layer)
 
     elif app_layer.layer_name.lower() == "smtp":
-        result["application"] = parse_smtp(app_layer)
+        result["application"] = parse_smtp(app_layer, packet)
 
     elif app_layer.layer_name.lower() == "data":
         result["application"] = parse_data(app_layer)

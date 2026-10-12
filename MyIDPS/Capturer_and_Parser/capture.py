@@ -31,7 +31,8 @@ def remove_none(data):
 def write_event(output: TextIO, parsed_packet: dict): # write parsed_packet into output file 
     filtered_packet = remove_none(parsed_packet) # remove none value from parsed_packet 
 
-    output.write(json.dumps(filtered_packet) + "\n")
+    # output.write(json.dumps(filtered_packet) + "\n")
+    output.write(json.dumps(filtered_packet, ensure_ascii=False) + "\n")
     output.flush()
 
 
