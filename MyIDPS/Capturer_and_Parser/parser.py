@@ -2,7 +2,7 @@ import pyshark
 import json
 import argparse 
 from html import unescape
-from urllib.parse import unquote
+from urllib.parse import unquote, unquote_plus
 
 NON_APPLICATION_LAYERS = {
     "eth", "sll", "sll2", "ip", "ipv6",
@@ -228,6 +228,21 @@ def parse_application(packet):
             "body": get_field("file_data"),
         }
 
+        content_type = next(
+            (value for name, value in result["headers"].items()
+             if name.lower() == "content-type"),
+            None,
+        )
+        if isinstance(content_type, list):
+            content_type = content_type[0]
+        media_type = (
+            content_type.split(";", 1)[0].strip().lower()
+            if isinstance(content_type, str) else None
+        )
+        body = result["body"]
+        if media_type == "application/x-www-form-urlencoded" and isinstance(body, str) and body:
+            result["body_url_decode"] = unquote_plus(body)
+
         # HTTP Request
         if get_field("request_method") is not None:
             full_uri = get_field("request_full_uri")
@@ -249,17 +264,8 @@ def parse_application(packet):
                 "reason": get_field("response_phrase"),
             })
 
-            content_type = next(
-                (value for name, value in result["headers"].items()
-                 if name.lower() == "content-type"),
-                None,
-            )
-            if isinstance(content_type, list):
-                content_type = content_type[0]
-            body = result["body"]
             if (
-                isinstance(content_type, str)
-                and content_type.split(";", 1)[0].strip().lower() == "text/html"
+                media_type == "text/html"
                 and isinstance(body, str)
                 and body
             ):
