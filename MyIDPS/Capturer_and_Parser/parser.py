@@ -1,6 +1,7 @@
 import pyshark
 import json
 import argparse 
+from html import unescape
 from urllib.parse import unquote
 
 NON_APPLICATION_LAYERS = {
@@ -247,6 +248,22 @@ def parse_application(packet):
                 "status_code": get_field("response_code"),
                 "reason": get_field("response_phrase"),
             })
+
+            content_type = next(
+                (value for name, value in result["headers"].items()
+                 if name.lower() == "content-type"),
+                None,
+            )
+            if isinstance(content_type, list):
+                content_type = content_type[0]
+            body = result["body"]
+            if (
+                isinstance(content_type, str)
+                and content_type.split(";", 1)[0].strip().lower() == "text/html"
+                and isinstance(body, str)
+                and body
+            ):
+                result["decoded_text"] = unescape(body)
 
         else:
             result["type"] = "unknown"
