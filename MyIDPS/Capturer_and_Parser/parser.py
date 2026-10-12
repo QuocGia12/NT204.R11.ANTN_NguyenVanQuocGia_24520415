@@ -1,6 +1,7 @@
 import pyshark
 import json
 import argparse 
+from urllib.parse import unquote
 
 NON_APPLICATION_LAYERS = {
     "eth", "sll", "sll2", "ip", "ipv6",
@@ -228,11 +229,13 @@ def parse_application(packet):
 
         # HTTP Request
         if get_field("request_method") is not None:
+            full_uri = get_field("request_full_uri")
             result.update({
                 "type": "request",
                 "method": get_field("request_method"),
                 "uri": get_field("request_uri"),
-                "full_uri": get_field("request_full_uri"),
+                "full_uri": full_uri,
+                "decoded_full_uri": unquote(full_uri) if full_uri is not None else None,
                 "version": get_field("request_version"),
             })
 
