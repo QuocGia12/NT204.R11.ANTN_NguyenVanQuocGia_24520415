@@ -44,6 +44,11 @@ class PacketContext:
         if self.payload_length != len(self.payload):
             raise ValueError("payload_length must equal len(payload)")
 
+    @property
+    def dsize(self) -> int:
+        """Snort dsize value: transport payload length only."""
+        return self.payload_length
+
     @classmethod
     def from_parsed_packet(
         cls,
@@ -96,6 +101,7 @@ class PacketContext:
             "src_port": self.src_port,
             "dst_port": self.dst_port,
             "payload_length": self.payload_length,
+            "dsize": self.dsize,
             "tcp_flags": sorted(self.tcp_flags),
             "flow_id": self.flow_id,
             "flow_direction": self.flow_direction,

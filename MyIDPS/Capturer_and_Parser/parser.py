@@ -90,7 +90,13 @@ def extract_transport_payload(packet) -> bytes:
     if not payload:
         return b""
 
-    return bytes.fromhex(payload.replace(":", ""))
+    try:
+        if isinstance(payload, bytes):
+            return payload
+        return bytes.fromhex(str(payload).replace(":", ""))
+    except (TypeError, ValueError):
+        # A malformed payload must not stop parsing the remaining capture.
+        return b""
 
 
 def parse_packet(packet): 
@@ -190,9 +196,13 @@ def parse_packet(packet):
     else: 
         result["network"]["protocol"] = "UNKNOWN"
 
-    if "TCP" in packet or "UDP" in packet: 
+    if "TCP" in packet or "UDP" in packet:
+        transport_payload = extract_transport_payload(packet)
         result["transport"] = parse_transport(packet)
-        result["payload"] = extract_transport_payload(packet).decode("utf-8", errors="replace")
+        # Normalize dsize for both TCP and UDP. UDP's native ``length``
+        # includes the UDP header, so it must not be used for dsize.
+        result["transport"]["payload_len"] = len(transport_payload)
+        result["payload"] = transport_payload.decode("utf-8", errors="replace")
     else: 
         result["transport"]["protocol"] = "UNKNOWN"
         result["payload"] = "UNKNOWN"
