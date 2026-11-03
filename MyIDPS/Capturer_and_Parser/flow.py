@@ -1,4 +1,40 @@
 from datetime import datetime
+from dataclasses import dataclass
+
+
+@dataclass(frozen=True)
+class FlowContext:
+    """Flow metadata attached to the packet currently being processed.
+
+    ``established`` and ``not_established`` are TCP-only concepts.  They are
+    ``None`` for UDP so a future rule matcher cannot accidentally interpret a
+    UDP pseudo-session as a TCP established connection.
+    """
+
+    flow_id: str | None
+    protocol: str | None
+    direction: str | None
+    stage: str | None
+    flow_flags: tuple[str, ...] = ()
+    to_server: bool | None = None
+    to_client: bool | None = None
+    established: bool | None = None
+    not_established: bool | None = None
+
+    def to_dict(self) -> dict:
+        """Return a JSON-friendly representation for packet output."""
+        result = {
+            "flow_id": self.flow_id,
+            "protocol": self.protocol,
+            "direction": self.direction,
+            "stage": self.stage,
+            "flags": list(self.flow_flags),
+            "to_server": self.to_server,
+            "to_client": self.to_client,
+            "established": self.established,
+            "not_established": self.not_established,
+        }
+        return result
 
 
 def empty_direction() -> dict:
@@ -62,6 +98,7 @@ class FlowTracker:
             flow["_tcp_stage"] = {
                 "initiator": None,
                 "syn_ack_seen": False,
+                "established": False,
                 "fin_seen": {"a_to_b": False, "b_to_a": False},
                 "fin_acked": {"a_to_b": False, "b_to_a": False},
             }
@@ -117,6 +154,7 @@ class FlowTracker:
 
         if ack and state["syn_ack_seen"] and direction == state["initiator"]:
             flow["stage"] = "established"
+            state["established"] = True
             return
 
         # Packet đầu không có SYN hoặc có data: capture có thể thiếu handshake.
@@ -129,10 +167,53 @@ class FlowTracker:
             has_data = False
         if packet_count == 1 or has_data:
             flow["stage"] = "established"
+            state["established"] = True
+
+    @staticmethod
+    def _tcp_established(flow: dict) -> bool:
+        return bool(flow.get("_tcp_stage", {}).get("established", False))
+
+    def _build_flow_context(self, flow: dict, direction: str) -> FlowContext:
+        protocol = flow["protocol"]
+
+        if protocol == "TCP":
+            tcp_state = flow["_tcp_stage"]
+            # A normal TCP flow learns the client from the SYN direction.
+            # If capture starts mid-stream, the first observed endpoint (a)
+            # is the deterministic fallback client direction.
+            client_direction = tcp_state["initiator"] or "a_to_b"
+            is_to_server = direction == client_direction
+            established = self._tcp_established(flow)
+            flags = ["to_server" if is_to_server else "to_client"]
+            flags.append("established" if established else "not_established")
+            return FlowContext(
+                flow_id=flow["flow_id"],
+                protocol=protocol,
+                direction="to_server" if is_to_server else "to_client",
+                stage=flow["stage"],
+                flow_flags=tuple(flags),
+                to_server=is_to_server,
+                to_client=not is_to_server,
+                established=established,
+                not_established=not established,
+            )
+
+        # UDP is connectionless.  Its pseudo-session has direction, but no
+        # TCP-style established/not_established flag.
+        is_to_server = direction == "a_to_b"
+        return FlowContext(
+            flow_id=flow["flow_id"],
+            protocol=protocol,
+            direction="to_server" if is_to_server else "to_client",
+            stage="pseudo_session",
+            flow_flags=("to_server" if is_to_server else "to_client",),
+            to_server=is_to_server,
+            to_client=not is_to_server,
+        )
 
 
-    def observe(self, packet) -> str | None:
-        """Nhận một packet, cập nhật đúng một flow và trả về flow_id."""
+    def observe(self, packet) -> FlowContext | None:
+        """Nhận một packet, cập nhật flow và trả về metadata của packet."""
         if "IP" in packet:
             ip_layer = packet.ip
         elif "IPV6" in packet:
@@ -213,10 +294,10 @@ class FlowTracker:
             ):
                 if str(getattr(transport, field, "0")) == "1":
                     stats[counter] += 1
-            
+
             self._update_tcp_stage(flow, transport, direction)
 
-        return flow_id
+        return self._build_flow_context(flow, direction)
 
     def snapshot(self) -> list[dict]:
         """Trả về bản ghi JSON-serializable, không sửa trạng thái tracker."""

@@ -56,8 +56,8 @@ def process_pcap(pcap_file: Path, output_packet: TextIO, output_application: Tex
     )
     try: 
         for packet in capture:  
-            flow_id = tracker.observe(packet)
-            parsed_packet = parser.parse(packet, flow_id)
+            flow_context = tracker.observe(packet)
+            parsed_packet = parser.parse(packet, flow_context)
             write_event(output_packet, parsed_packet["packet"])
             if (parsed_packet["application"]): 
                 write_event(output_application, parsed_packet["application"])
@@ -80,8 +80,8 @@ def process_interface(interface: str, output_packet: TextIO, output_application:
 
     try: 
         for packet in capture.sniff_continuously():
-            flow_id = tracker.observe(packet)
-            parsed_packet = parser.parse(packet, flow_id)
+            flow_context = tracker.observe(packet)
+            parsed_packet = parser.parse(packet, flow_context)
             write_event(output_packet, parsed_packet["packet"])
             if (parsed_packet["application"]): 
                 write_event(output_application, parsed_packet["application"])

@@ -10,6 +10,12 @@ import binascii
 import quopri
 from pathlib import Path
 
+from .flow import FlowContext
+try:
+    from ..Core_Engine.models import PacketContext
+except ImportError:  # Support running main.py directly from the MyIDPS folder.
+    from Core_Engine.models import PacketContext
+
 NON_APPLICATION_LAYERS = {
     "eth", "sll", "sll2", "ip", "ipv6",
     "tcp", "udp", "icmp", "icmpv6",
@@ -33,13 +39,29 @@ DNS_TYPES = {
 DNS_CLASSES = {1: "IN", 3: "CH", 4: "HS"}
 
 class PacketParser: 
-    def parse(self, packet, flow_id): 
+    def parse(self, packet, flow_context):
         # test 
         parsed_packet = self.base_parsed_packet(packet)
+
+        if isinstance(flow_context, FlowContext):
+            flow_id = flow_context.flow_id
+            flow_metadata = flow_context.to_dict()
+        else:
+            # Keep compatibility with callers that still pass a plain flow_id.
+            flow_id = flow_context
+            flow_metadata = None
 
         # process packet 
         parsed_packet["packet"] = parse_packet(packet)
         parsed_packet["packet"]["flow_id"] = flow_id 
+        if flow_metadata is not None:
+            parsed_packet["packet"]["flow"] = flow_metadata
+
+        parsed_packet["context"] = PacketContext.from_parsed_packet(
+            parsed_packet["packet"],
+            extract_transport_payload(packet),
+            flow_metadata,
+        )
 
         # process application if applicable
         parsed_packet["application"] = parse_application(packet)
@@ -56,6 +78,20 @@ class PacketParser:
             "application": {
             }
         }
+
+def extract_transport_payload(packet) -> bytes:
+    if "TCP" in packet:
+        payload = getattr(packet.tcp, "payload", None)
+    elif "UDP" in packet:
+        payload = getattr(packet.udp, "payload", None)
+    else:
+        return b""
+
+    if not payload:
+        return b""
+
+    return bytes.fromhex(payload.replace(":", ""))
+
 
 def parse_packet(packet): 
     def parse_network(packet): 
@@ -134,20 +170,6 @@ def parse_packet(packet):
 
         return None
 
-    def parse_transport_payload(packet):
-        if "TCP" in packet:
-            payload = getattr(packet.tcp, "payload", None)
-
-        elif "UDP" in packet:
-            payload = getattr(packet.udp, "payload", None)
-
-        else:
-            return b""
-
-        if not payload:
-            return b""
-
-        return bytes.fromhex(payload.replace(":", "")) # return bytes 
     result = {
         "number": "-1",
         "sniff_time": "-1", 
@@ -170,7 +192,7 @@ def parse_packet(packet):
 
     if "TCP" in packet or "UDP" in packet: 
         result["transport"] = parse_transport(packet)
-        result["payload"] = parse_transport_payload(packet).decode("utf-8", errors="replace")
+        result["payload"] = extract_transport_payload(packet).decode("utf-8", errors="replace")
     else: 
         result["transport"]["protocol"] = "UNKNOWN"
         result["payload"] = "UNKNOWN"
