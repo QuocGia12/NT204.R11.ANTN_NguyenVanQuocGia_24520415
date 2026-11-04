@@ -11,6 +11,7 @@ from .models import (
     Rule,
     ValidationResult,
 )
+from .validator import validate_rule
 
 
 SUPPORTED_OPTIONS = frozenset(
@@ -79,6 +80,13 @@ def parse_rule(rule_text: str, line_number: int | None = None) -> ValidationResu
             dst_ports=dst_ports,
             options=options,
         )
+        semantic_errors = validate_rule(rule)
+        if semantic_errors:
+            return ValidationResult.invalid(
+                semantic_errors,
+                raw_text=raw_text,
+                line_number=line_number,
+            )
         return ValidationResult.ok(rule)
     except RuleSyntaxError as exc:
         return ValidationResult.invalid(
