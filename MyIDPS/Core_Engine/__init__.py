@@ -11,6 +11,7 @@ from .models import (
     Rule,
     ValidationResult,
 )
+from .loader import RuleLoadReport, RuleLoader, RuleParserUnavailableError
 
 __all__ = [
     "AddressSpec",
@@ -21,5 +22,8 @@ __all__ = [
     "PacketContext",
     "PortSpec",
     "Rule",
+    "RuleLoadReport",
+    "RuleLoader",
+    "RuleParserUnavailableError",
     "ValidationResult",
 ]
