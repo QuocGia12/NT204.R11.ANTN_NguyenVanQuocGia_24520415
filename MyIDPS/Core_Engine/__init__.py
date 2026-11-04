@@ -12,6 +12,7 @@ from .models import (
     ValidationResult,
 )
 from .loader import RuleLoadReport, RuleLoader, RuleParserUnavailableError
+from .rule_parser import SUPPORTED_OPTIONS, RuleSyntaxError, parse_rule
 
 __all__ = [
     "AddressSpec",
@@ -25,5 +26,8 @@ __all__ = [
     "RuleLoadReport",
     "RuleLoader",
     "RuleParserUnavailableError",
+    "RuleSyntaxError",
+    "SUPPORTED_OPTIONS",
     "ValidationResult",
+    "parse_rule",
 ]
