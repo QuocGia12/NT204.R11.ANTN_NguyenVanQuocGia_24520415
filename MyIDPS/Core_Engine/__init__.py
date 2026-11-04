@@ -12,6 +12,7 @@ from .models import (
     ValidationResult,
 )
 from .loader import RuleLoadReport, RuleLoader, RuleParserUnavailableError
+from .repository import RuleRepository
 from .rule_parser import SUPPORTED_OPTIONS, RuleSyntaxError, parse_rule
 from .validator import RuleValidator, validate_rule
 
@@ -27,6 +28,7 @@ __all__ = [
     "RuleLoadReport",
     "RuleLoader",
     "RuleParserUnavailableError",
+    "RuleRepository",
     "RuleSyntaxError",
     "RuleValidator",
     "SUPPORTED_OPTIONS",
