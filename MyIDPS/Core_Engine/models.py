@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, Mapping
 
 
@@ -106,4 +106,176 @@ class PacketContext:
             "flow_id": self.flow_id,
             "flow_direction": self.flow_direction,
             "flow_flags": sorted(self.flow_flags),
+        }
+
+
+@dataclass(frozen=True)
+class AddressSpec:
+    """Normalized rule address expression.
+
+    ``values`` contains ``any``, IPv4 addresses, or CIDR strings.  Parsing
+    and semantic validation are performed by the rule parser/validator; this
+    class only stores the normalized expression.
+    """
+
+    values: tuple[str, ...] = ("any",)
+
+
+@dataclass(frozen=True)
+class PortSpec:
+    """Normalized rule port expression."""
+
+    is_any: bool = True
+    values: tuple[int, ...] = ()
+    ranges: tuple[tuple[int, int], ...] = ()
+
+
+@dataclass(frozen=True)
+class ContentSpec:
+    """One ordered Snort content option."""
+
+    value: bytes
+    nocase: bool = False
+    offset: int | None = None
+    depth: int | None = None
+    distance: int | None = None
+    within: int | None = None
+
+
+@dataclass(frozen=True)
+class FlagSpec:
+    """Normalized TCP flag expression.
+
+    ``mode`` is one of ``exact``, ``contains``, ``any_of`` or ``excludes``
+    and represents the semantics of the optional Snort flag modifier.
+    """
+
+    mode: str = "exact"
+    required: frozenset[str] = frozenset()
+    forbidden: frozenset[str] = frozenset()
+
+
+@dataclass(frozen=True)
+class DSizeSpec:
+    """Normalized dsize comparison."""
+
+    operator: str
+    value: int
+    upper: int | None = None
+
+
+@dataclass(frozen=True)
+class Rule:
+    """Validated internal representation of one supported Snort rule."""
+
+    action: str
+    protocol: str
+    src_addresses: tuple[AddressSpec, ...]
+    src_ports: PortSpec
+    direction: str
+    dst_addresses: tuple[AddressSpec, ...]
+    dst_ports: PortSpec
+    msg: str
+    sid: int
+    rev: int
+    contents: tuple[ContentSpec, ...] = ()
+    flags: FlagSpec | None = None
+    dsize: DSizeSpec | None = None
+    flow: frozenset[str] = frozenset()
+    classtype: str | None = None
+    priority: int | None = None
+    raw_text: str = ""
+    line_number: int | None = None
+
+    def summary(self) -> dict[str, Any]:
+        """Return rule identity and metadata for a detection event."""
+        flag_summary = None
+        if self.flags is not None:
+            flag_summary = {
+                "mode": self.flags.mode,
+                "required": sorted(self.flags.required),
+                "forbidden": sorted(self.flags.forbidden),
+            }
+
+        dsize_summary = None
+        if self.dsize is not None:
+            dsize_summary = {
+                "operator": self.dsize.operator,
+                "value": self.dsize.value,
+                "upper": self.dsize.upper,
+            }
+
+        return {
+            "action": self.action,
+            "protocol": self.protocol,
+            "msg": self.msg,
+            "sid": self.sid,
+            "rev": self.rev,
+            "classtype": self.classtype,
+            "priority": self.priority,
+            "flow": sorted(self.flow),
+            "flags": flag_summary,
+            "dsize": dsize_summary,
+            "content_count": len(self.contents),
+            "raw": self.raw_text,
+            "line_number": self.line_number,
+        }
+
+
+@dataclass(frozen=True)
+class ValidationResult:
+    """Result of parsing/validating one rule line."""
+
+    valid: bool
+    rule: Rule | None = None
+    errors: tuple[str, ...] = ()
+    raw_text: str = ""
+    line_number: int | None = None
+
+    @classmethod
+    def ok(cls, rule: Rule) -> "ValidationResult":
+        return cls(
+            valid=True,
+            rule=rule,
+            raw_text=rule.raw_text,
+            line_number=rule.line_number,
+        )
+
+    @classmethod
+    def invalid(
+        cls,
+        errors: list[str] | tuple[str, ...],
+        raw_text: str = "",
+        line_number: int | None = None,
+    ) -> "ValidationResult":
+        return cls(
+            valid=False,
+            errors=tuple(errors),
+            raw_text=raw_text,
+            line_number=line_number,
+        )
+
+
+@dataclass(frozen=True)
+class DetectionEvent:
+    """One alert generated when a rule matches one packet."""
+
+    timestamp: str | None
+    packet_number: str | None
+    flow_id: str | None
+    rule: Rule
+    packet: PacketContext
+    match: Mapping[str, Any] = field(default_factory=dict)
+    event_type: str = "alert"
+
+    def to_dict(self) -> dict[str, Any]:
+        """Return a JSON-safe event representation."""
+        return {
+            "event_type": self.event_type,
+            "timestamp": self.timestamp,
+            "packet_number": self.packet_number,
+            "flow_id": self.flow_id,
+            "rule": self.rule.summary(),
+            "packet": self.packet.summary(),
+            "match": dict(self.match),
         }
