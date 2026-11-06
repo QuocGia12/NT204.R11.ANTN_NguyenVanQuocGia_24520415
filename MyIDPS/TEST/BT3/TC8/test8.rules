@@ -1,0 +1,1 @@
+alert tcp 127.0.0.1 12345 -> 127.0.0.1 80 (msg:"TEST flow to_server"; flow:established, to_server; sid:6000001; rev:1;)

@@ -1,0 +1,26 @@
+## Test Case 8 
+
+> Flow matcher xử lý đúng 
+
+Em sử dụng file `test8.rules` để test flow, có nội dung như sau: 
+```
+alert tcp 127.0.0.1 12345 <-> 127.0.0.1 80 (msg:"TEST flow to_server"; flow:established, to_server; sid:6000001; rev:1;)
+```
+
+Sau đó thử query đến port 80 của localhost từ port 12345(sử dụng lệnh `curl localhost 80 --local-port 12345`) thì kết quả các detection event sinh ra là: 
+```
+{"event_type": "alert", "timestamp": "2026-11-06 14:25:07.325918", "packet_number": "78", "flow_id": "flow-000024", "rule": {"action": "alert", "protocol": "TCP", "msg": "TEST flow", "sid": 6000001, "rev": 1, "flow": ["established", "to_server"], "content_count": 0, "raw": "alert tcp 127.0.0.1 any -> 127.0.0.1 80 (msg:\"TEST flow\"; flow:established,to_server; sid:6000001; rev:1;)", "line_number": 1}, "packet": {"number": "78", "timestamp": "2026-11-06 14:25:07.325918", "protocol": "TCP", "src_ip": "127.0.0.1", "dst_ip": "127.0.0.1", "src_port": 57288, "dst_port": 80, "payload_length": 0, "dsize": 0, "tcp_flags": ["A"], "flow_id": "flow-000024", "flow_direction": "to_server", "flow_flags": ["established", "to_server"]}, "match": {"protocol": "TCP", "direction": "to_server", "matched_contents": [], "dsize": 0, "tcp_flags": ["A"], "flags": "A"}}
+
+{"event_type": "alert", "timestamp": "2026-11-06 14:25:07.325949", "packet_number": "79", "flow_id": "flow-000024", "rule": {"action": "alert", "protocol": "TCP", "msg": "TEST flow", "sid": 6000001, "rev": 1, "flow": ["established", "to_server"], "content_count": 0, "raw": "alert tcp 127.0.0.1 any -> 127.0.0.1 80 (msg:\"TEST flow\"; flow:established,to_server; sid:6000001; rev:1;)", "line_number": 1}, "packet": {"number": "79", "timestamp": "2026-11-06 14:25:07.325949", "protocol": "TCP", "src_ip": "127.0.0.1", "dst_ip": "127.0.0.1", "src_port": 57288, "dst_port": 80, "payload_length": 73, "dsize": 73, "tcp_flags": ["A", "P"], "flow_id": "flow-000024", "flow_direction": "to_server", "flow_flags": ["established", "to_server"]}, "match": {"protocol": "TCP", "direction": "to_server", "matched_contents": [], "dsize": 73, "tcp_flags": ["A", "P"], "flags": "AP"}}
+{"event_type": "alert", "timestamp": "2026-11-06 14:25:07.326931", "packet_number": "82", "flow_id": "flow-000024", "rule": {"action": "alert", "protocol": "TCP", "msg": "TEST flow", "sid": 6000001, "rev": 1, "flow": ["established", "to_server"], "content_count": 0, "raw": "alert tcp 127.0.0.1 any -> 127.0.0.1 80 (msg:\"TEST flow\"; flow:established,to_server; sid:6000001; rev:1;)", "line_number": 1}, "packet": {"number": "82", "timestamp": "2026-11-06 14:25:07.326931", "protocol": "TCP", "src_ip": "127.0.0.1", "dst_ip": "127.0.0.1", "src_port": 57288, "dst_port": 80, "payload_length": 0, "dsize": 0, "tcp_flags": ["A"], "flow_id": "flow-000024", "flow_direction": "to_server", "flow_flags": ["established", "to_server"]}, "match": {"protocol": "TCP", "direction": "to_server", "matched_contents": [], "dsize": 0, "tcp_flags": ["A"], "flags": "A"}}
+
+{"event_type": "alert", "timestamp": "2026-11-06 14:25:07.327162", "packet_number": "83", "flow_id": "flow-000024", "rule": {"action": "alert", "protocol": "TCP", "msg": "TEST flow", "sid": 6000001, "rev": 1, "flow": ["established", "to_server"], "content_count": 0, "raw": "alert tcp 127.0.0.1 any -> 127.0.0.1 80 (msg:\"TEST flow\"; flow:established,to_server; sid:6000001; rev:1;)", "line_number": 1}, "packet": {"number": "83", "timestamp": "2026-11-06 14:25:07.327162", "protocol": "TCP", "src_ip": "127.0.0.1", "dst_ip": "127.0.0.1", "src_port": 57288, "dst_port": 80, "payload_length": 0, "dsize": 0, "tcp_flags": ["A", "F"], "flow_id": "flow-000024", "flow_direction": "to_server", "flow_flags": ["established", "to_server"]}, "match": {"protocol": "TCP", "direction": "to_server", "matched_contents": [], "dsize": 0, "tcp_flags": ["A", "F"], "flags": "AF"}}
+
+{"event_type": "alert", "timestamp": "2026-11-06 14:25:07.327344", "packet_number": "85", "flow_id": "flow-000024", "rule": {"action": "alert", "protocol": "TCP", "msg": "TEST flow", "sid": 6000001, "rev": 1, "flow": ["established", "to_server"], "content_count": 0, "raw": "alert tcp 127.0.0.1 any -> 127.0.0.1 80 (msg:\"TEST flow\"; flow:established,to_server; sid:6000001; rev:1;)", "line_number": 1}, "packet": {"number": "85", "timestamp": "2026-11-06 14:25:07.327344", "protocol": "TCP", "src_ip": "127.0.0.1", "dst_ip": "127.0.0.1", "src_port": 57288, "dst_port": 80, "payload_length": 0, "dsize": 0, "tcp_flags": ["A"], "flow_id": "flow-000024", "flow_direction": "to_server", "flow_flags": ["established", "to_server"]}, "match": {"protocol": "TCP", "direction": "to_server", "matched_contents": [], "dsize": 0, "tcp_flags": ["A"], "flags": "A"}}
+
+```
+
+
+Nhận xét: 
+- Gói SYN khởi động bắt tay của client không được match vì flow ta sử dụng là `established`, gói match đầu tiên là gói ACK của client gửi đến server(lúc này thì kết nối đã established), đúng như mong muốn 
+- Chỉ match các gói từ client gửi đến server, các gói từ server gửi đến client không đượt match, đúng như ta mong muốn vì flow trong rule có `to_server`
