@@ -77,7 +77,7 @@ alert tcp 192.168.0.0/16 22 -> 10.10.10.10 8080 (msg:"TEST 020 - Mixed CIDR and 
 ```
 
 Kết quả: 
-![alt text](image.png)
+![alt text](img/image.png)
 
 ```
 Rule(action='alert', protocol='TCP', src_addresses=(AddressSpec(values=('any',)),), src_ports=PortSpec(is_any=True, values=(), ranges=()), direction='->', dst_addresses=(AddressSpec(values=('any',)),), dst_ports=PortSpec(is_any=True, values=(), ranges=()), msg='TEST 001 - All any', sid=4000001, rev=1, contents=(), flags=None, dsize=None, flow=frozenset(), classtype=None, priority=None, raw_text='alert tcp any any -> any any (msg:"TEST 001 - All any"; sid:4000001; rev:1;)', line_number=3)

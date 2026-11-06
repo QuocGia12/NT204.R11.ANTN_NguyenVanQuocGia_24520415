@@ -12,6 +12,6 @@ if result.valid and result.rule is not None:
 Em sử dụng `test1.rules`, là một file rule có các rule hợp lệ, comment và dòng trống để test chương trình có xem comment và dòng trống là rule không 
 
 Kết quả: 
-![alt text](image.png)
+![alt text](img/image.png)
 
 -> Các rule hợp lệ được in ra thành công, tức chương trình đánh giá nó hợp lệ, đồng thời không thấy comment và dòng trống được đánh giá là rule hợp lệ, tức test thành công 

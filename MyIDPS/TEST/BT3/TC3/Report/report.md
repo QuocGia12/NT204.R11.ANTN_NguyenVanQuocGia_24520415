@@ -41,7 +41,7 @@ alert tcp any any -> any 80 (msg:"Match HTTP packets"; sid:2000001; rev:1;)
 Trong đó có rule cuối cùng là rule valid để test rằng chương trình không crash 
 
 Kết quả: 
-![alt text](image.png)
+![alt text](img/image.png)
 - Ta thấy được các rule sử dụng keyword ngoài phạm vi đó được đánh dấu là invalid với lý do là unsupported keyword tương ứng 
 - Đồng thời thì chương trình cũng chạy ổn định, không crash, vẫn sinh ra detection event match với rule cuối đó 
-![alt text](image-1.png)
+![alt text](img/image-1.png)
