@@ -12,6 +12,7 @@ from .models import (
     ValidationResult,
 )
 from .loader import RuleLoadReport, RuleLoader, RuleParserUnavailableError
+from .matcher import RuleMatcher
 from .repository import RuleRepository
 from .rule_parser import SUPPORTED_OPTIONS, RuleSyntaxError, parse_rule
 from .validator import RuleValidator, validate_rule
@@ -26,6 +27,7 @@ __all__ = [
     "PortSpec",
     "Rule",
     "RuleLoadReport",
+    "RuleMatcher",
     "RuleLoader",
     "RuleParserUnavailableError",
     "RuleRepository",

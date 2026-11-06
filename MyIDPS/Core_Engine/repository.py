@@ -91,7 +91,7 @@ class RuleRepository:
             if identity in seen:
                 continue
             seen.add(identity)
-            if _header_matches(rule, packet):
+            if header_matches(rule, packet):
                 selected.append(rule)
         selected.sort(key=lambda rule: self._positions[id(rule)])
         return tuple(selected)
@@ -104,7 +104,8 @@ def _normalize_protocol(protocol: str | None) -> str | None:
     return normalized or None
 
 
-def _header_matches(rule: Rule, packet: PacketContext) -> bool:
+def header_matches(rule: Rule, packet: PacketContext) -> bool:
+    """Check protocol, addresses, ports and direction for one rule."""
     if _normalize_protocol(packet.protocol) != _normalize_protocol(rule.protocol):
         return False
 
