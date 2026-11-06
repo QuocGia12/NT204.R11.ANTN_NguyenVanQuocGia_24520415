@@ -15,8 +15,8 @@ _TCP_ONLY_FLOW_FLAGS = frozenset({"established", "not_established"})
 class RuleMatcher:
     """Match normalized packet data against the implemented rule conditions.
 
-    Header, flow and TCP flag matching are implemented here.  Dsize and
-    content are deliberately left for later matcher steps.
+    Header, flow, TCP flag and dsize matching are implemented here.  Content
+    matching is deliberately left for a later matcher step.
     """
 
     def match(
@@ -24,17 +24,18 @@ class RuleMatcher:
         packet: PacketContext,
         rules: Iterable[Rule],
     ) -> tuple[Rule, ...]:
-        """Return rules that match the packet header, flow and TCP flags."""
+        """Return rules that match the packet header, flow, flags and dsize."""
         return tuple(
             rule for rule in rules if self.matches(packet, rule)
         )
 
     def matches(self, packet: PacketContext, rule: Rule) -> bool:
-        """Return whether one rule matches header, flow and flags."""
+        """Return whether one rule matches header, flow, flags and dsize."""
         return (
             header_matches(rule, packet)
             and self._matches_flow(packet, rule)
             and self._matches_flags(packet, rule)
+            and self._matches_dsize(packet, rule)
         )
 
     @staticmethod
@@ -88,4 +89,37 @@ class RuleMatcher:
             return bool(packet_flags & required)
         if flag_spec.mode == "excludes":
             return not (packet_flags & forbidden)
+        return False
+
+    @staticmethod
+    def _matches_dsize(packet: PacketContext, rule: Rule) -> bool:
+        """Match a rule's dsize condition against raw payload length.
+
+        ``PacketContext.dsize`` is the length of the raw TCP/UDP transport
+        payload.  It deliberately does not include Ethernet, IP, TCP or UDP
+        headers.
+        """
+        dsize_spec = rule.dsize
+        if dsize_spec is None:
+            return True
+
+        dsize = packet.dsize
+        operator = dsize_spec.operator
+        value = dsize_spec.value
+
+        if operator == "eq":
+            return dsize == value
+        if operator == "gt":
+            return dsize > value
+        if operator == "lt":
+            return dsize < value
+        if operator == "ge":
+            return dsize >= value
+        if operator == "le":
+            return dsize <= value
+        if operator == "range":
+            return (
+                dsize_spec.upper is not None
+                and value <= dsize <= dsize_spec.upper
+            )
         return False
