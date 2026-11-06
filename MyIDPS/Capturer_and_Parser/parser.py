@@ -1,4 +1,3 @@
-import pyshark
 import json
 import argparse 
 from html import unescape
