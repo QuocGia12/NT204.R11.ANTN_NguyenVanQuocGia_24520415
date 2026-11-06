@@ -1,0 +1,1 @@
+alert tcp 127.0.0.1 any -> 127.0.0.1 8000 (msg:"TEST 1"; flags:S; sid:6000001; rev:1;)
