@@ -15,8 +15,7 @@ _TCP_ONLY_FLOW_FLAGS = frozenset({"established", "not_established"})
 class RuleMatcher:
     """Match normalized packet data against the implemented rule conditions.
 
-    Header, flow, TCP flag and dsize matching are implemented here.  Content
-    matching is deliberately left for a later matcher step.
+    Header, flow, TCP flag, dsize and content matching are implemented here.
     """
 
     def match(
@@ -24,7 +23,7 @@ class RuleMatcher:
         packet: PacketContext,
         rules: Iterable[Rule],
     ) -> tuple[Rule, ...]:
-        """Return rules that match the packet header, flow, flags and dsize."""
+        """Return rules matching header, flow, flags, dsize and content."""
         return tuple(
             rule for rule in rules if self.matches(packet, rule)
         )
@@ -36,6 +35,7 @@ class RuleMatcher:
             and self._matches_flow(packet, rule)
             and self._matches_flags(packet, rule)
             and self._matches_dsize(packet, rule)
+            and self._matches_content(packet, rule)
         )
 
     @staticmethod
@@ -123,3 +123,75 @@ class RuleMatcher:
                 and value <= dsize <= dsize_spec.upper
             )
         return False
+
+    @staticmethod
+    def _matches_content(packet: PacketContext, rule: Rule) -> bool:
+        """Match all ordered content conditions against the raw payload.
+
+        Content checks are evaluated in declaration order.  A content without
+        a location modifier starts searching from the beginning of the buffer,
+        matching Snort's default behavior.  ``distance`` and ``within`` make a
+        content relative to the cursor immediately after the previous match.
+        """
+        if not rule.contents:
+            return True
+
+        payload = packet.payload
+        cursor = 0
+        payload_length = len(payload)
+
+        for content in rule.contents:
+            value = content.value
+            if not isinstance(value, bytes) or not value:
+                return False
+            if any(
+                modifier is not None and (
+                    not isinstance(modifier, int)
+                    or isinstance(modifier, bool)
+                    or modifier < 0
+                )
+                for modifier in (
+                    content.offset,
+                    content.depth,
+                    content.distance,
+                    content.within,
+                )
+            ):
+                return False
+            if (
+                content.offset is not None
+                and content.depth is not None
+                and content.depth < content.offset
+            ):
+                return False
+
+            if content.distance is not None:
+                start = cursor + content.distance
+            elif content.offset is not None:
+                start = content.offset
+            elif content.within is not None:
+                # Snort treats within without distance as distance 0.
+                start = cursor
+            else:
+                # No modifier means search from the beginning of the buffer.
+                start = 0
+
+            end = payload_length
+            if content.depth is not None:
+                depth_origin = content.offset if content.offset is not None else 0
+                end = min(end, depth_origin + content.depth)
+            if content.within is not None:
+                end = min(end, cursor + content.within)
+
+            if start > end:
+                return False
+
+            haystack = payload.lower() if content.nocase else payload
+            needle = value.lower() if content.nocase else value
+            match_start = haystack.find(needle, start, end)
+            if match_start < 0:
+                return False
+
+            cursor = match_start + len(value)
+
+        return True
