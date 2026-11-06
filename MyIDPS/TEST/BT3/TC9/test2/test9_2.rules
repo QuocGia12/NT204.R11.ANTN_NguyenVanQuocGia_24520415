@@ -1,0 +1,2 @@
+# TEST case
+alert tcp 127.0.0.1 any -> 127.0.0.1 8000 (msg:"TEST case"; content:"qgiaaa"; sid:6000001; rev:1;)

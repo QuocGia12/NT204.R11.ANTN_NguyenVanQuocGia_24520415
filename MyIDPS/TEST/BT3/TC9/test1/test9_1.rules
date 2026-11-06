@@ -1,0 +1,2 @@
+# TEST nocase
+alert tcp 127.0.0.1 any -> 127.0.0.1 8000 (msg:"TEST nocase"; content:"qgiaaa"; nocase; sid:6000001; rev:1;)

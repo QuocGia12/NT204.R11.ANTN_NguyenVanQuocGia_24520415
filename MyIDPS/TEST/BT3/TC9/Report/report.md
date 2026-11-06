@@ -1,0 +1,44 @@
+## Test Case 9 
+
+> Xử lý có và không có `nocase` option đúng 
+
+Em dùng lệnh `nc -lvnp 8000` để mở một tcp server ở port 8000 
+### Test nocase 
+Em sử dụng file `test9_1.rules` có nội dung sau: 
+```
+# TEST nocase
+alert tcp 127.0.0.1 any -> 127.0.0.1 8000 (msg:"TEST nocase"; content:"qgiaaa"; nocase; sid:6000001; rev:1;)
+```
+
+Sau đó em thực hiện kết nối đến `localhost:8000` bằng `nc localhost 8000`, sau đó gửi nội dung sau: 
+
+![alt text](img/image.png)
+
+Kết quả các detection events sinh ra là: 
+```
+{"event_type": "alert", "timestamp": "2026-11-06 14:52:34.324916", "packet_number": "189", "flow_id": "flow-000023", "rule": {"action": "alert", "protocol": "TCP", "msg": "TEST nocase", "sid": 6000001, "rev": 1, "flow": [], "content_count": 1, "raw": "alert tcp 127.0.0.1 any -> 127.0.0.1 8000 (msg:\"TEST nocase\"; content:\"qgiaaa\"; nocase; sid:6000001; rev:1;)", "line_number": 2}, "packet": {"number": "189", "timestamp": "2026-11-06 14:52:34.324916", "protocol": "TCP", "src_ip": "127.0.0.1", "dst_ip": "127.0.0.1", "src_port": 60548, "dst_port": 8000, "payload_length": 7, "dsize": 7, "tcp_flags": ["A", "P"], "flow_id": "flow-000023", "flow_direction": "to_server", "flow_flags": ["established", "to_server"]}, "match": {"protocol": "TCP", "direction": "to_server", "matched_contents": [{"content_index": 0, "offset": 0, "length": 6}], "payload_offset": 0, "dsize": 7, "tcp_flags": ["A", "P"], "flags": "AP", "matched_content": "qgiaaa"}}
+
+{"event_type": "alert", "timestamp": "2026-11-06 14:52:42.036475", "packet_number": "435", "flow_id": "flow-000023", "rule": {"action": "alert", "protocol": "TCP", "msg": "TEST nocase", "sid": 6000001, "rev": 1, "flow": [], "content_count": 1, "raw": "alert tcp 127.0.0.1 any -> 127.0.0.1 8000 (msg:\"TEST nocase\"; content:\"qgiaaa\"; nocase; sid:6000001; rev:1;)", "line_number": 2}, "packet": {"number": "435", "timestamp": "2026-11-06 14:52:42.036475", "protocol": "TCP", "src_ip": "127.0.0.1", "dst_ip": "127.0.0.1", "src_port": 60548, "dst_port": 8000, "payload_length": 7, "dsize": 7, "tcp_flags": ["A", "P"], "flow_id": "flow-000023", "flow_direction": "to_server", "flow_flags": ["established", "to_server"]}, "match": {"protocol": "TCP", "direction": "to_server", "matched_contents": [{"content_index": 0, "offset": 0, "length": 6}], "payload_offset": 0, "dsize": 7, "tcp_flags": ["A", "P"], "flags": "AP", "matched_content": "qgiaaa"}}
+
+{"event_type": "alert", "timestamp": "2026-11-06 14:53:01.915492", "packet_number": "983", "flow_id": "flow-000023", "rule": {"action": "alert", "protocol": "TCP", "msg": "TEST nocase", "sid": 6000001, "rev": 1, "flow": [], "content_count": 1, "raw": "alert tcp 127.0.0.1 any -> 127.0.0.1 8000 (msg:\"TEST nocase\"; content:\"qgiaaa\"; nocase; sid:6000001; rev:1;)", "line_number": 2}, "packet": {"number": "983", "timestamp": "2026-11-06 14:53:01.915492", "protocol": "TCP", "src_ip": "127.0.0.1", "dst_ip": "127.0.0.1", "src_port": 60548, "dst_port": 8000, "payload_length": 13, "dsize": 13, "tcp_flags": ["A", "P"], "flow_id": "flow-000023", "flow_direction": "to_server", "flow_flags": ["established", "to_server"]}, "match": {"protocol": "TCP", "direction": "to_server", "matched_contents": [{"content_index": 0, "offset": 6, "length": 6}], "payload_offset": 6, "dsize": 13, "tcp_flags": ["A", "P"], "flags": "AP", "matched_content": "qgiaaa"}}
+
+```
+
+Ta thấy được có 3 detection events sinh ra đúng với 3 packet mà em đã gửi, đồng thời các detection events cũng chỉ rõ `"matched_content": "qgiaaa"`
+
+### Test không có nocase 
+Em sử dụng file rules `test9_2.rules` có nội dung: 
+```
+# TEST case
+alert tcp 127.0.0.1 any -> 127.0.0.1 8000 (msg:"TEST case"; content:"qgiaaa"; sid:6000001; rev:1;)
+```
+
+(Tức không có `nocase`)
+
+Thực hiện tương tự như test nocase, ta nhận được các detection events tương ứng là: 
+```
+{"event_type": "alert", "timestamp": "2026-11-06 14:57:47.071489", "packet_number": "139", "flow_id": "flow-000023", "rule": {"action": "alert", "protocol": "TCP", "msg": "TEST case", "sid": 6000001, "rev": 1, "flow": [], "content_count": 1, "raw": "alert tcp 127.0.0.1 any -> 127.0.0.1 8000 (msg:\"TEST case\"; content:\"qgiaaa\"; sid:6000001; rev:1;)", "line_number": 2}, "packet": {"number": "139", "timestamp": "2026-11-06 14:57:47.071489", "protocol": "TCP", "src_ip": "127.0.0.1", "dst_ip": "127.0.0.1", "src_port": 33102, "dst_port": 8000, "payload_length": 7, "dsize": 7, "tcp_flags": ["A", "P"], "flow_id": "flow-000023", "flow_direction": "to_server", "flow_flags": ["established", "to_server"]}, "match": {"protocol": "TCP", "direction": "to_server", "matched_contents": [{"content_index": 0, "offset": 0, "length": 6}], "payload_offset": 0, "dsize": 7, "tcp_flags": ["A", "P"], "flags": "AP", "matched_content": "qgiaaa"}}
+
+```
+
+Ta nhận thấy chỉ có 1 detection event sinh ra, đúng với mong muốn vì lúc này `qgiaAa` và `hello QgiAaA` không còn match với content `qgiaaa` nữa
