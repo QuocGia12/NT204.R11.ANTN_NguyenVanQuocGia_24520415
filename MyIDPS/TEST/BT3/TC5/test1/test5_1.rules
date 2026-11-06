@@ -1,0 +1,2 @@
+# 001 - Unidirectional
+alert tcp 127.0.0.1 12345 -> 127.0.0.1 80 (msg:"TEST - TCP unidirectional"; sid:5000001; rev:1;)

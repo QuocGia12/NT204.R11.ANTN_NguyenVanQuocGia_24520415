@@ -1,0 +1,2 @@
+# 002 - Bidirectional
+alert tcp 127.0.0.1 12345 <> 127.0.0.1 80 (msg:"TEST - TCP bidirectional"; sid:5000002; rev:1;)
