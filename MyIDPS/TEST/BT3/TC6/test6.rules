@@ -1,0 +1,17 @@
+# TEST 1
+alert tcp 127.0.0.1 12345 -> 127.0.0.1 80 (msg:"TEST 1"; sid:6000001; rev:1;)
+
+# TEST 2
+alert tcp 127.0.0.1 12345 <> 127.0.0.1 80 (msg:"TEST 2"; sid:6000002; rev:1;)
+
+# TEST 3
+alert tcp 127.0.0.1 any -> any 80 (msg:"TEST 3"; sid:6000003; rev:1;)
+
+# TEST 4
+alert tcp 10.10.10.10 12345 -> 127.0.0.1 80 (msg:"TEST 4"; sid:6000004; rev:1;)
+
+# TEST 5
+alert tcp 127.0.0.1 12345 -> 127.0.0.1 443 (msg:"TEST 5"; sid:6000005; rev:1;)
+
+# TEST 6
+alert udp 127.0.0.1 12345 -> 127.0.0.1 80 (msg:"TEST 5"; sid:6000005; rev:1;)
