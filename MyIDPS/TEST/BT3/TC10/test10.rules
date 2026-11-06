@@ -1,0 +1,1 @@
+alert tcp 127.0.0.1 any -> 127.0.0.1 8000 (msg:"TEST offset and depth"; content:"qgiaaa"; offset:2; depth:8; sid:6000001; rev:1;)
