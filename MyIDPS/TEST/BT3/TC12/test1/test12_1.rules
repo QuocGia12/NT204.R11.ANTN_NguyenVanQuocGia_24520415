@@ -1,0 +1,4 @@
+# TEST 1 - Exact match: SYN only
+alert tcp 127.0.0.1 any <> 127.0.0.1 80 (msg:"TEST 1"; flags:S; sid:6000001; rev:1;)
+# TEST 2 - ! modifier: SYN must not be set
+alert tcp 127.0.0.1 any <> 127.0.0.1 80 (msg:"TEST 2"; flags:!S; sid:6000004; rev:1;)
