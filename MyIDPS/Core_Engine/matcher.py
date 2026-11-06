@@ -1,8 +1,9 @@
 """Header, flow and TCP flag matching for normalized packets and rules."""
 
 from collections.abc import Iterable
+from typing import Any
 
-from .models import PacketContext, Rule
+from .models import DetectionEvent, PacketContext, Rule
 from .repository import header_matches
 
 
@@ -28,15 +29,91 @@ class RuleMatcher:
             rule for rule in rules if self.matches(packet, rule)
         )
 
-    def matches(self, packet: PacketContext, rule: Rule) -> bool:
-        """Return whether one rule matches header, flow, flags and dsize."""
-        return (
-            header_matches(rule, packet)
-            and self._matches_flow(packet, rule)
-            and self._matches_flags(packet, rule)
-            and self._matches_dsize(packet, rule)
-            and self._matches_content(packet, rule)
+    def match_events(
+        self,
+        packet: PacketContext,
+        rules: Iterable[Rule],
+    ) -> tuple[DetectionEvent, ...]:
+        """Create one detection event for every rule that matches ``packet``."""
+        events: list[DetectionEvent] = []
+        for rule in rules:
+            event = self.match_event(packet, rule)
+            if event is not None:
+                events.append(event)
+        return tuple(events)
+
+    def match_event(
+        self,
+        packet: PacketContext,
+        rule: Rule,
+    ) -> DetectionEvent | None:
+        """Return one event for a matching rule, or ``None`` otherwise."""
+        match_details = self._match_details(packet, rule)
+        if match_details is None:
+            return None
+
+        return DetectionEvent(
+            timestamp=packet.timestamp,
+            packet_number=packet.number,
+            flow_id=packet.flow_id,
+            rule=rule,
+            packet=packet,
+            match=match_details,
         )
+
+    def matches(self, packet: PacketContext, rule: Rule) -> bool:
+        """Return whether one rule matches all implemented conditions."""
+        return self._match_details(packet, rule) is not None
+
+    def _match_details(
+        self,
+        packet: PacketContext,
+        rule: Rule,
+    ) -> dict[str, Any] | None:
+        """Run all matchers and build JSON-safe match metadata."""
+        if not header_matches(rule, packet):
+            return None
+        if not self._matches_flow(packet, rule):
+            return None
+        if not self._matches_flags(packet, rule):
+            return None
+        if not self._matches_dsize(packet, rule):
+            return None
+
+        content_matches = self._content_match_details(packet, rule)
+        if content_matches is None:
+            return None
+
+        details: dict[str, Any] = {
+            "protocol": packet.protocol,
+            "direction": packet.flow_direction,
+            "matched_contents": list(content_matches),
+            "payload_offset": (
+                content_matches[0]["offset"] if content_matches else None
+            ),
+            "dsize": packet.dsize,
+            "tcp_flags": sorted(packet.tcp_flags),
+            "flags": "".join(sorted(packet.tcp_flags)),
+        }
+        if content_matches:
+            display_values = [
+                self._display_content(content.value)
+                for content in rule.contents
+            ]
+            details["matched_content"] = (
+                display_values[0]
+                if len(display_values) == 1
+                else display_values
+            )
+        return details
+
+    @staticmethod
+    def _display_content(value: bytes) -> str:
+        """Return a JSON-safe content label without exposing packet payload."""
+        try:
+            return value.decode("utf-8")
+        except UnicodeDecodeError:
+            return f"hex:{value.hex()}"
 
     @staticmethod
     def _matches_flow(packet: PacketContext, rule: Rule) -> bool:
@@ -126,7 +203,15 @@ class RuleMatcher:
 
     @staticmethod
     def _matches_content(packet: PacketContext, rule: Rule) -> bool:
-        """Match all ordered content conditions against the raw payload.
+        """Match all ordered content conditions against the raw payload."""
+        return RuleMatcher._content_match_details(packet, rule) is not None
+
+    @staticmethod
+    def _content_match_details(
+        packet: PacketContext,
+        rule: Rule,
+    ) -> tuple[dict[str, int], ...] | None:
+        """Return offsets for all content matches, or ``None`` on failure.
 
         Content checks are evaluated in declaration order.  A content without
         a location modifier starts searching from the beginning of the buffer,
@@ -134,16 +219,17 @@ class RuleMatcher:
         content relative to the cursor immediately after the previous match.
         """
         if not rule.contents:
-            return True
+            return ()
 
         payload = packet.payload
         cursor = 0
         payload_length = len(payload)
+        matches: list[dict[str, int]] = []
 
         for content in rule.contents:
             value = content.value
             if not isinstance(value, bytes) or not value:
-                return False
+                return None
             if any(
                 modifier is not None and (
                     not isinstance(modifier, int)
@@ -157,13 +243,13 @@ class RuleMatcher:
                     content.within,
                 )
             ):
-                return False
+                return None
             if (
                 content.offset is not None
                 and content.depth is not None
                 and content.depth < content.offset
             ):
-                return False
+                return None
 
             if content.distance is not None:
                 start = cursor + content.distance
@@ -184,14 +270,21 @@ class RuleMatcher:
                 end = min(end, cursor + content.within)
 
             if start > end:
-                return False
+                return None
 
             haystack = payload.lower() if content.nocase else payload
             needle = value.lower() if content.nocase else value
             match_start = haystack.find(needle, start, end)
             if match_start < 0:
-                return False
+                return None
 
+            matches.append(
+                {
+                    "content_index": len(matches),
+                    "offset": match_start,
+                    "length": len(value),
+                }
+            )
             cursor = match_start + len(value)
 
-        return True
+        return tuple(matches)
